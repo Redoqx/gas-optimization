@@ -1,0 +1,14 @@
+name: gas_opt
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+  - jupyter
+  - notebook
+  - ipykernel
+  - requests
+  - pip:
+      - py-solc-x
+      - python-dotenv

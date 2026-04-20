@@ -1,0 +1,18 @@
+# Rahasia
+.env
+
+# Dataset besar (teman clone ulang sendiri via notebook)
+contracts_dataset/
+
+# Node.js
+hardhat_project/node_modules/
+hardhat_project/artifacts/
+hardhat_project/cache/
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Hasil (opsional — hapus baris ini kalau mau share results)
+results/

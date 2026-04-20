@@ -1,0 +1,380 @@
+[
+  {
+    "alamat": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "domain": "DeFi",
+    "nama": "WETH9",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\DeFi_01_WETH9.sol",
+    "loc": 1511,
+    "complexity": "Complex",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D",
+    "domain": "DeFi",
+    "nama": "UniswapV2Router02",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\DeFi_02_UniswapV2Router02.sol",
+    "loc": 1559,
+    "complexity": "Complex",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+    "domain": "DeFi",
+    "nama": "Dai",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\DeFi_03_Dai.sol",
+    "loc": 379,
+    "complexity": "Medium",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "domain": "DeFi",
+    "nama": "FiatTokenProxy",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\DeFi_04_FiatTokenProxy.sol",
+    "loc": 657,
+    "complexity": "Complex",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
+    "domain": "DeFi",
+    "nama": "Uni",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\DeFi_05_Uni.sol",
+    "loc": 1163,
+    "complexity": "Complex",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9",
+    "domain": "DeFi",
+    "nama": "InitializableAdminUpgradeabilityProxy",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\DeFi_06_InitializableAdminUpgradeabilityProxy.sol",
+    "loc": 1389,
+    "complexity": "Complex",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0x5A98FcBEA516Cf06857215779Fd812CA3beF1B32",
+    "domain": "DeFi",
+    "nama": "MiniMeToken",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\DeFi_07_MiniMeToken.sol",
+    "loc": 1199,
+    "complexity": "Complex",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0xD533a949740bb3306d119CC777fa900bA034cd52",
+    "domain": "DeFi",
+    "nama": "Vyper_contract",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\DeFi_08_Vyper_contract.sol",
+    "loc": 747,
+    "complexity": "Complex",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0xc00e94Cb662C3520282E6f5717214004A7f26888",
+    "domain": "DeFi",
+    "nama": "Comp",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\DeFi_09_Comp.sol",
+    "loc": 301,
+    "complexity": "Medium",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0x9f8F72aA9304c8B593d555F12eF6589cC3A579A2",
+    "domain": "DeFi",
+    "nama": "DSToken",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\DeFi_10_DSToken.sol",
+    "loc": 947,
+    "complexity": "Complex",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D",
+    "domain": "NFT",
+    "nama": "BoredApeYachtClub",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\NFT_01_BoredApeYachtClub.sol",
+    "loc": 4033,
+    "complexity": "Complex",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB",
+    "domain": "NFT",
+    "nama": "CryptoPunksMarket",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\NFT_02_CryptoPunksMarket.sol",
+    "loc": 491,
+    "complexity": "Medium",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0x60E4d786628Fea6478F785A6d7e704777c86a7c6",
+    "domain": "NFT",
+    "nama": "MutantApeYachtClub",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\NFT_03_MutantApeYachtClub.sol",
+    "loc": 1819,
+    "complexity": "Complex",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0x49cF6f5d44E70224e2E23fDcdd2C053F30aDA28B",
+    "domain": "NFT",
+    "nama": "CloneX",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\NFT_04_CloneX.sol",
+    "loc": 1655,
+    "complexity": "Complex",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0x23581767a106ae21c074b2276D25e5C3e136a68b",
+    "domain": "NFT",
+    "nama": "Moonbirds",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\NFT_05_Moonbirds.sol",
+    "loc": 4294,
+    "complexity": "Complex",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0xEd5AF388653567Af2F388E6224dC7C4b3241C544",
+    "domain": "NFT",
+    "nama": "Azuki",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\NFT_06_Azuki.sol",
+    "loc": 1541,
+    "complexity": "Complex",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0x8a90CAb2b38dba80c64b7734e58Ee1dB38B8992e",
+    "domain": "NFT",
+    "nama": "Doodles",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\NFT_07_Doodles.sol",
+    "loc": 1407,
+    "complexity": "Complex",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0x7Bd29408f11D2bFC23c34f18275bBf23bB716Bc7",
+    "domain": "NFT",
+    "nama": "Meebits",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\NFT_08_Meebits.sol",
+    "loc": 1349,
+    "complexity": "Complex",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0x1CB1A5e65610AEFF2551A50f76a87a7d3fB649C6",
+    "domain": "NFT",
+    "nama": "Toadz",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\NFT_09_Toadz.sol",
+    "loc": 2226,
+    "complexity": "Complex",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0x34d85c9CDeB23FA97cb08333b511ac86E1C4E258",
+    "domain": "NFT",
+    "nama": "Land",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\NFT_10_Land.sol",
+    "loc": 2432,
+    "complexity": "Complex",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+    "domain": "Token",
+    "nama": "TetherToken",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\Token_01_TetherToken.sol",
+    "loc": 893,
+    "complexity": "Complex",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+    "domain": "Token",
+    "nama": "WBTC",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\Token_02_WBTC.sol",
+    "loc": 1317,
+    "complexity": "Complex",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0x514910771AF9Ca656af840dff83E8264EcF986CA",
+    "domain": "Token",
+    "nama": "LinkToken",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\Token_03_LinkToken.sol",
+    "loc": 589,
+    "complexity": "Complex",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0x0bc529c00C6401aEF6D220BE8C6Ea1667F6Ad93e",
+    "domain": "Token",
+    "nama": "YFI",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\Token_04_YFI.sol",
+    "loc": 449,
+    "complexity": "Medium",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0x111111111117dC0aa78b770fA6A738034120C302",
+    "domain": "Token",
+    "nama": "OneInch",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\Token_05_OneInch.sol",
+    "loc": 2235,
+    "complexity": "Complex",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0x6810e776880C02933D47DB1b9fc05908e5386b96",
+    "domain": "Token",
+    "nama": "GnosisToken",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\Token_06_GnosisToken.sol",
+    "loc": 301,
+    "complexity": "Medium",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0xba100000625a3754423978a60c9317c58a424e3D",
+    "domain": "Token",
+    "nama": "BalancerGovernanceToken",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\Token_07_BalancerGovernanceToken.sol",
+    "loc": 2987,
+    "complexity": "Complex",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0xC011a73ee8576Fb46F5E1c5751cA3B9Fe0af2a6F",
+    "domain": "Token",
+    "nama": "ProxyERC20",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\Token_08_ProxyERC20.sol",
+    "loc": 506,
+    "complexity": "Complex",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0x4d224452801ACEd8B2F0aebE155379bb5D594381",
+    "domain": "Token",
+    "nama": "SimpleToken",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\Token_09_SimpleToken.sol",
+    "loc": 525,
+    "complexity": "Complex",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0x6DEA81C8171D0bA574754EF6F8b412F2Ed88c54D",
+    "domain": "Token",
+    "nama": "LQTYToken",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\Token_10_LQTYToken.sol",
+    "loc": 2668,
+    "complexity": "Complex",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0x408ED6354d4973f66138C91495F2f2FCbd8724C3",
+    "domain": "Governance",
+    "nama": "GovernorBravoDelegator",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\Governance_01_GovernorBravoDelegator.sol",
+    "loc": 525,
+    "complexity": "Complex",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0xc0Da02939E1441F497fd74F78cE7Decb17B66529",
+    "domain": "Governance",
+    "nama": "GovernorBravoDelegator",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\Governance_02_GovernorBravoDelegator.sol",
+    "loc": 266,
+    "complexity": "Medium",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0x0BEF27FEB58e857046d630B2c03dFb7bae567494",
+    "domain": "Governance",
+    "nama": "FeiDAO",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\Governance_03_FeiDAO.sol",
+    "loc": 3516,
+    "complexity": "Complex",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0x690e775361AD66D1c4A25d89da9fCd639F5198eD",
+    "domain": "Governance",
+    "nama": "Governor",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\Governance_05_Governor.sol",
+    "loc": 1011,
+    "complexity": "Complex",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0xDbD27635A534A3d3169Ef0498beB56Fb9c937489",
+    "domain": "Governance",
+    "nama": "GovernorAlpha",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\Governance_06_GovernorAlpha.sol",
+    "loc": 323,
+    "complexity": "Medium",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0x35d9f4953748b318f18c30634bA299b237eeDfff",
+    "domain": "Governance",
+    "nama": "GovernorAlpha",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\Governance_07_GovernorAlpha.sol",
+    "loc": 604,
+    "complexity": "Complex",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0x323A76393544d5ecca80cd6ef2A560C6a395b7E3",
+    "domain": "Governance",
+    "nama": "ENSGovernor",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\Governance_08_ENSGovernor.sol",
+    "loc": 3751,
+    "complexity": "Complex",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0xB3a87172F555ae2a2AB79Be60B336D2F7D0187f0",
+    "domain": "Governance",
+    "nama": "GovernorAlpha",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\Governance_10_GovernorAlpha.sol",
+    "loc": 348,
+    "complexity": "Medium",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0xBB9bc244D798123fDe783fCc1C72d3Bb8C189413",
+    "domain": "Utility",
+    "nama": "DAO",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\Utility_01_DAO.sol",
+    "loc": 1236,
+    "complexity": "Complex",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0xA646E29877d52B9e2De457ECa09C724fF16D0a2B",
+    "domain": "Utility",
+    "nama": "MultiSigWallet",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\Utility_03_MultiSigWallet.sol",
+    "loc": 731,
+    "complexity": "Complex",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0x19c0976f590D67707E62397C87829d896Dc0f1F1",
+    "domain": "Utility",
+    "nama": "Jug",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\Utility_04_Jug.sol",
+    "loc": 313,
+    "complexity": "Medium",
+    "compile_ok": false
+  },
+  {
+    "alamat": "0x8392F6669292fA56123F71949B52d883aE57e225",
+    "domain": "Utility",
+    "nama": "MultiSigWalletWithTimeLock",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\Utility_05_MultiSigWalletWithTimeLock.sol",
+    "loc": 6783,
+    "complexity": "Complex",
+    "compile_ok": false
+  }
+]
