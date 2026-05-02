@@ -15,7 +15,7 @@
     "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\DeFi_02_UniswapV2Router02.sol",
     "loc": 1559,
     "complexity": "Complex",
-    "compile_ok": false
+    "compile_ok": true
   },
   {
     "alamat": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
@@ -24,7 +24,7 @@
     "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\DeFi_03_Dai.sol",
     "loc": 379,
     "complexity": "Medium",
-    "compile_ok": false
+    "compile_ok": true
   },
   {
     "alamat": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
@@ -51,7 +51,7 @@
     "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\DeFi_06_InitializableAdminUpgradeabilityProxy.sol",
     "loc": 1389,
     "complexity": "Complex",
-    "compile_ok": false
+    "compile_ok": true
   },
   {
     "alamat": "0x5A98FcBEA516Cf06857215779Fd812CA3beF1B32",
@@ -63,13 +63,13 @@
     "compile_ok": true
   },
   {
-    "alamat": "0xD533a949740bb3306d119CC777fa900bA034cd52",
+    "alamat": "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
     "domain": "DeFi",
-    "nama": "Vyper_contract",
-    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\DeFi_08_Vyper_contract.sol",
-    "loc": 747,
+    "nama": "AppProxyUpgradeable",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\DeFi_08_AppProxyUpgradeable.sol",
+    "loc": 783,
     "complexity": "Complex",
-    "compile_ok": false
+    "compile_ok": true
   },
   {
     "alamat": "0xc00e94Cb662C3520282E6f5717214004A7f26888",
@@ -177,7 +177,7 @@
     "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\NFT_10_Land.sol",
     "loc": 2432,
     "complexity": "Complex",
-    "compile_ok": false
+    "compile_ok": true
   },
   {
     "alamat": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
@@ -195,7 +195,7 @@
     "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\Token_02_WBTC.sol",
     "loc": 1317,
     "complexity": "Complex",
-    "compile_ok": false
+    "compile_ok": true
   },
   {
     "alamat": "0x514910771AF9Ca656af840dff83E8264EcF986CA",
@@ -240,7 +240,7 @@
     "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\Token_07_BalancerGovernanceToken.sol",
     "loc": 2987,
     "complexity": "Complex",
-    "compile_ok": false
+    "compile_ok": true
   },
   {
     "alamat": "0xC011a73ee8576Fb46F5E1c5751cA3B9Fe0af2a6F",
@@ -249,7 +249,7 @@
     "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\Token_08_ProxyERC20.sol",
     "loc": 506,
     "complexity": "Complex",
-    "compile_ok": false
+    "compile_ok": true
   },
   {
     "alamat": "0x4d224452801ACEd8B2F0aebE155379bb5D594381",
@@ -267,7 +267,7 @@
     "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\Token_10_LQTYToken.sol",
     "loc": 2668,
     "complexity": "Complex",
-    "compile_ok": false
+    "compile_ok": true
   },
   {
     "alamat": "0x408ED6354d4973f66138C91495F2f2FCbd8724C3",
@@ -295,6 +295,15 @@
     "loc": 3516,
     "complexity": "Complex",
     "compile_ok": false
+  },
+  {
+    "alamat": "0xEC568fffba86c094cf06b22134B23074DFE2252c",
+    "domain": "Governance",
+    "nama": "AaveGovernanceV2",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\Governance_04_AaveGovernanceV2.sol",
+    "loc": 2751,
+    "complexity": "Complex",
+    "compile_ok": true
   },
   {
     "alamat": "0x690e775361AD66D1c4A25d89da9fCd639F5198eD",
@@ -333,6 +342,15 @@
     "compile_ok": true
   },
   {
+    "alamat": "0x6f3E6272A167e8AcCb32072d08E0957F9c79223d",
+    "domain": "Governance",
+    "nama": "NounsDAOProxy",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\Governance_09_NounsDAOProxy.sol",
+    "loc": 402,
+    "complexity": "Medium",
+    "compile_ok": true
+  },
+  {
     "alamat": "0xB3a87172F555ae2a2AB79Be60B336D2F7D0187f0",
     "domain": "Governance",
     "nama": "GovernorAlpha",
@@ -351,6 +369,15 @@
     "compile_ok": false
   },
   {
+    "alamat": "0xd9Db270c1B5E3Bd161E8c8503c55cEABeE709552",
+    "domain": "Utility",
+    "nama": "GnosisSafe",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\Utility_02_GnosisSafe.sol",
+    "loc": 1132,
+    "complexity": "Complex",
+    "compile_ok": true
+  },
+  {
     "alamat": "0xA646E29877d52B9e2De457ECa09C724fF16D0a2B",
     "domain": "Utility",
     "nama": "MultiSigWallet",
@@ -366,7 +393,7 @@
     "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\Utility_04_Jug.sol",
     "loc": 313,
     "complexity": "Medium",
-    "compile_ok": false
+    "compile_ok": true
   },
   {
     "alamat": "0x8392F6669292fA56123F71949B52d883aE57e225",
@@ -374,6 +401,51 @@
     "nama": "MultiSigWalletWithTimeLock",
     "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\Utility_05_MultiSigWalletWithTimeLock.sol",
     "loc": 6783,
+    "complexity": "Complex",
+    "compile_ok": true
+  },
+  {
+    "alamat": "0x00000000006c3852cbEf3e08E8dF289169EdE581",
+    "domain": "Utility",
+    "nama": "Seaport",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\Utility_06_Seaport.sol",
+    "loc": 11395,
+    "complexity": "Complex",
+    "compile_ok": true
+  },
+  {
+    "alamat": "0x1F98431c8aD98523631AE4a59f267346ea31F984",
+    "domain": "Utility",
+    "nama": "UniswapV3Factory",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\Utility_07_UniswapV3Factory.sol",
+    "loc": 3383,
+    "complexity": "Complex",
+    "compile_ok": true
+  },
+  {
+    "alamat": "0xE592427A0AEce92De3Edee1F18E0157C05861564",
+    "domain": "Utility",
+    "nama": "SwapRouter",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\Utility_08_SwapRouter.sol",
+    "loc": 2096,
+    "complexity": "Complex",
+    "compile_ok": true
+  },
+  {
+    "alamat": "0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45",
+    "domain": "Utility",
+    "nama": "SwapRouter02",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\Utility_09_SwapRouter02.sol",
+    "loc": 3878,
+    "complexity": "Complex",
+    "compile_ok": true
+  },
+  {
+    "alamat": "0xC36442b4a4522E871399CD717aBDD847Ab11FE88",
+    "domain": "Utility",
+    "nama": "NonfungiblePositionManager",
+    "file": "C:\\Users\\Ridho\\project\\KBJ\\gas_optimization\\contracts_dataset\\Utility_10_NonfungiblePositionManager.sol",
+    "loc": 4595,
     "complexity": "Complex",
     "compile_ok": true
   }
