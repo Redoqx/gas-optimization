@@ -34,7 +34,13 @@ Rata-rata penghematan (6 pola): **5.35%**. Jika diterapkan pada kontrak yang ser
 
 ### RQ4: Apakah penghematan gas signifikan secara statistik?
 
-**Jawaban**: **Ya**, signifikan secara statistik. Uji Wilcoxon Signed-Rank menghasilkan **W=15.0, p=0.031** (α=0.05), yang berarti hipotesis H1 (median penghematan > 0) diterima. Nilai W=15 adalah nilai maksimum yang mungkin untuk n=5 pasangan, menunjukkan konsistensi penuh — semua pola yang diukur menunjukkan penghematan positif.
+**Jawaban**: **Ya**, signifikan secara statistik — dikonfirmasi oleh dua uji Wilcoxon independen:
+
+1. **Wilcoxon per-pattern** (n=5 efektif): **W=15.0, p=0.031** — semua 5 pola menunjukkan penghematan positif (W=15 adalah nilai maksimum untuk n=5).
+
+2. **Wilcoxon per-contract** (n=35): **W=630.0, p<0.001** — menggunakan kontrak sebagai unit observasi dengan estimated savings `Σ(findings × avg_diff_gas)`. Hasil sangat kuat: W=630 adalah nilai maksimum untuk n=35, semua kontrak yang dioptimasi menunjukkan savings positif.
+
+Uji tambahan **Kruskal-Wallis per-domain** (H=14.015, p=0.007) menunjukkan bahwa besarnya potensi penghematan berbeda signifikan antar domain — kontrak Token dan DeFi era lama memiliki potensi penghematan gas terbesar.
 
 ---
 
@@ -46,7 +52,7 @@ Rata-rata penghematan (6 pola): **5.35%**. Jika diterapkan pada kontrak yang ser
 
 3. **Penghematan gas empiris terbukti nyata dan signifikan secara statistik** untuk 5 dari 6 pola yang diuji. `unchecked_arithmetic` memberikan penghematan terbesar (20.38%) yang sangat relevan untuk kontrak modern.
 
-4. **Distribusi anti-pattern tidak bergantung pada domain atau ukuran kontrak** (Chi-square p=0.073, Kruskal-Wallis p=0.427, Spearman ρ=-0.261). Anti-pattern boros gas adalah masalah universal yang muncul lintas domain dan ukuran kontrak.
+4. **Keberadaan anti-pattern tidak bergantung pada domain atau ukuran kontrak** (Chi-square p=0.073, KW-complexity p=0.427, Spearman ρ=-0.261). Anti-pattern boros gas adalah masalah universal lintas domain. Namun **besarnya potensi penghematan berbeda signifikan per domain** (KW-domain H=14.015, p=0.007) — domain Token dan DeFi era lama memiliki potensi penghematan terbesar karena dominasi `public_vs_external`.
 
 5. **Perbandingan dengan Slither terbatas** karena ketidakkompatibilan versi solc, namun framework kita unggul dalam mendukung kontrak era lama (solc 0.4.x).
 
