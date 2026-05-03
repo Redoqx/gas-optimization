@@ -9,6 +9,8 @@ dependencies:
   - notebook
   - ipykernel
   - requests
+  - numpy
+  - scipy
   - pip:
       - py-solc-x
       - python-dotenv
