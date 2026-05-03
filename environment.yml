@@ -12,3 +12,5 @@ dependencies:
   - pip:
       - py-solc-x
       - python-dotenv
+      - slither-analyzer
+      - packaging
