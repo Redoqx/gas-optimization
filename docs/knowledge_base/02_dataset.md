@@ -1,134 +1,159 @@
-# Dataset: 50 Smart Contract dari Etherscan Mainnet
+# Dataset: 75 Smart Contract dari Etherscan Mainnet
 
 ## Komposisi Dataset
 
 | Atribut | Detail |
 |---|---|
 | Sumber | Etherscan.io — Ethereum Mainnet, verified source code |
-| Jumlah kontrak | 50 (10 per domain) |
+| Jumlah kontrak | 75 (15 per domain) |
 | Domain | DeFi, NFT, Token, Governance, Utility |
-| Complexity level | Simple (<100 LOC), Medium (100–500 LOC), Complex (>500 LOC) |
-| Berhasil compile | 46 kontrak (92%) |
-| Gagal compile | 4 kontrak (8%) |
+| Complexity level | Simple (<100 SLOC), Medium (100–500 SLOC), Complex (>500 SLOC) |
+| Berhasil compile | 74 kontrak (98.7%) |
+| Gagal compile | 1 kontrak (1.3%) |
+| File konfigurasi | `contracts_selection.json` (active dataset) |
 
 ## Alasan Pemilihan Dataset Ini
 
 1. **Real-world contracts**: Kontrak yang sudah deployed dan diverifikasi di mainnet, bukan dummy/contoh tutorial
 2. **Diversity of domains**: 5 domain berbeda memastikan representasi use-case beragam
 3. **Verified source**: Etherscan menyediakan source code yang sudah diverifikasi sesuai deployed bytecode
-4. **Range of complexity**: Kontrak simple hingga complex (Seaport: 11.395 LOC)
-5. **Historical breadth**: Kontrak dari era Solidity 0.4.x hingga 0.8.x
+4. **Range of complexity**: Dari Multicall (43 SLOC) hingga NonfungiblePositionManager (3.957 SLOC)
+5. **Historical breadth**: Kontrak dari era Solidity 0.4.x (2017) hingga 0.8.x (2022+)
+6. **Stratified sampling**: 15 kontrak per domain, memaksimalkan jumlah kontrak Simple yang tersedia
+
+---
+
+## Distribusi per Complexity Level (74 kontrak valid)
+
+| Complexity | Kriteria | Jumlah | Rata-rata SLOC | Rata-rata Findings |
+|---|---|---|---|---|
+| Simple | < 100 SLOC | **2** | 56.5 | 9.0 |
+| Medium | 100–500 SLOC | **36** | 305 | 16.8 |
+| Complex | > 500 SLOC | **36** | 1.472 | 24.6 |
+
+**Catatan Simple**: Hanya 2 kontrak Simple tersedia di seluruh dataset 75 kontrak (keduanya Utility domain: Multicall dan Multicall2). Ini mencerminkan kenyataan bahwa kontrak mainnet yang verified di Etherscan umumnya berukuran non-trivial. Token, NFT, DeFi, dan Governance tidak memiliki kontrak <100 SLOC dalam dataset ini.
 
 ---
 
 ## Distribusi per Domain
 
-### DeFi (Decentralized Finance) — 10 kontrak
+### DeFi (Decentralized Finance) — 15 kontrak, 15 compile-ok
 
-| File | Nama | LOC | Complexity | Compile | Solc Era |
-|---|---|---|---|---|---|
-| DeFi_01_WETH9.sol | WETH9 | 1.511 | Complex | ✅ | 0.4.x |
-| DeFi_02_UniswapV2Router02.sol | UniswapV2Router02 | 1.559 | Complex | ✅ | 0.6.x |
-| DeFi_03_Dai.sol | Dai | 379 | Medium | ✅ | 0.5.x |
-| DeFi_04_FiatTokenProxy.sol | FiatTokenProxy | 657 | Complex | ✅ | 0.6.x |
-| DeFi_05_Uni.sol | Uni | 1.163 | Complex | ✅ | 0.6.x |
-| DeFi_06_InitializableAdminUpgradeabilityProxy.sol | InitializableAdminUpgradeabilityProxy | 1.389 | Complex | ✅ | 0.5.x |
-| DeFi_07_MiniMeToken.sol | MiniMeToken | 1.199 | Complex | ✅ | 0.4.x |
-| DeFi_08_AppProxyUpgradeable.sol | AppProxyUpgradeable | 783 | Complex | ✅ | 0.5.x |
-| DeFi_09_Comp.sol | Comp | 301 | Medium | ✅ | 0.5.x |
-| DeFi_10_DSToken.sol | DSToken | 947 | Complex | ✅ | 0.5.x |
+| Nama | SLOC | Complexity | Solc Era |
+|---|---|---|---|
+| AppProxyUpgradeable | 279 | Medium | 0.4.x |
+| Dai | 169 | Medium | 0.5.x |
+| DaiJoin | 192 | Medium | 0.5.x |
+| ETHJoin | 192 | Medium | 0.5.x |
+| GemJoin | 162 | Medium | 0.5.x |
+| KyberNetworkProxy | 484 | Medium | 0.6.x |
+| Spotter | 129 | Medium | 0.5.x |
+| UniswapV2Factory | 414 | Medium | 0.5.x |
+| UniswapV2Pair | 396 | Medium | 0.5.x |
+| Vat | 238 | Medium | 0.5.x |
+| CErc20 | 2.178 | Complex | 0.5.x |
+| CErc20Delegator (cDAI) | 1.901 | Complex | 0.5.x |
+| CErc20Delegator (cCOMP) | 1.901 | Complex | 0.5.x |
+| CEther | 2.138 | Complex | 0.5.x |
+| InitializableAdminUpgradeabilityProxy | 1.185 | Complex | 0.6.x |
 
-### NFT (Non-Fungible Token) — 10 kontrak
+### NFT (Non-Fungible Token) — 15 kontrak, 15 compile-ok
 
-| File | Nama | LOC | Complexity | Compile |
+| Nama | SLOC | Complexity | Solc Era |
+|---|---|---|---|
+| CryptoPunksMarket | 212 | Medium | 0.4.x |
+| AdminUpgradeabilityProxy | 1.515 | Complex | 0.5.x |
+| AvastarTeleporter | 2.171 | Complex | 0.5.x |
+| Azuki | 1.335 | Complex | 0.8.x |
+| BaseRegistrarImplementation (ENS) | 664 | Complex | 0.5.x |
+| CloneX | 1.308 | Complex | 0.8.x |
+| DCLRegistrar | 1.570 | Complex | 0.5.x |
+| Doodles | 1.206 | Complex | 0.8.x |
+| KittyCore (CryptoKitties) | 1.685 | Complex | 0.4.x |
+| LANDProxy (Decentraland) | 1.256 | Complex | 0.4.x |
+| Meebits | 567 | Complex | 0.8.x |
+| MutantApeYachtClub | 1.550 | Complex | 0.8.x |
+| Parcel | 733 | Complex | 0.5.x |
+| SuperRareV2 | 999 | Complex | 0.5.x |
+| WrappedPunk | 1.376 | Complex | 0.5.x |
+
+### Token (ERC-20 & Derivatif) — 15 kontrak, 15 compile-ok
+
+| Nama | SLOC | Complexity | Solc Era |
+|---|---|---|---|
+| BAToken | 146 | Medium | 0.4.x |
+| LinkToken | 250 | Medium | 0.4.x |
+| MANAToken | 222 | Medium | 0.4.x |
+| ProxyERC20 | 408 | Medium | 0.5.x |
+| SimpleToken (ApeCoin) | 451 | Medium | 0.8.x |
+| TetherToken | 377 | Medium | 0.4.x |
+| AdminUpgradeabilityProxy (BUSD) | 581 | Complex | 0.6.x |
+| AdminUpgradeabilityProxy (PAXG) | 687 | Complex | 0.6.x |
+| BalancerGovernanceToken | 1.280 | Complex | 0.7.x |
+| FiatTokenProxy (USDC) | 2.715 | Complex | 0.6.x |
+| GraphToken | 832 | Complex | 0.7.x |
+| LQTYToken | 2.135 | Complex | 0.6.x |
+| OneInch | 964 | Complex | 0.6.x |
+| OwnedUpgradeabilityProxy (TUSD) | 1.291 | Complex | 0.5.x |
+| WBTC | 564 | Complex | 0.4.x |
+
+### Governance (DAO & Voting) — 15 kontrak, 15 compile-ok
+
+| Nama | SLOC | Complexity | Solc Era |
+|---|---|---|---|
+| Comp | 249 | Medium | 0.5.x |
+| DSToken (MKR) | 371 | Medium | 0.5.x |
+| Governor (ENS) | 443 | Medium | 0.8.x |
+| GovernorAlpha (Compound) | 252 | Medium | 0.5.x |
+| GovernorBravoDelegate | 465 | Medium | 0.5.x |
+| GovernorBravoDelegator (Compound) | 465 | Medium | 0.5.x |
+| GovernorBravoDelegator (Uniswap) | 200 | Medium | 0.7.x |
+| NounsDAOProxy | 336 | Medium | 0.8.x |
+| Tribe (FEI) | 322 | Medium | 0.8.x |
+| Uni (UNI) | 493 | Medium | 0.6.x |
+| YFI | 191 | Medium | 0.5.x |
+| AaveGovernanceV2 | 1.234 | Complex | 0.7.x |
+| AdminUpgradeabilityProxy (Aave) | 1.117 | Complex | 0.6.x |
+| MiniMeToken (LDO) | 516 | Complex | 0.4.x |
+| Token (ANT) | 528 | Complex | 0.4.x |
+
+### Utility (General Purpose) — 15 kontrak, 14 compile-ok
+
+| Nama | SLOC | Complexity | Solc Era | Compile |
 |---|---|---|---|---|
-| NFT_01_BoredApeYachtClub.sol | BoredApeYachtClub | 4.033 | Complex | ❌ |
-| NFT_02_CryptoPunksMarket.sol | CryptoPunksMarket | 491 | Medium | ✅ |
-| NFT_03_MutantApeYachtClub.sol | MutantApeYachtClub | 1.819 | Complex | ✅ |
-| NFT_04_CloneX.sol | CloneX | 1.655 | Complex | ✅ |
-| NFT_05_Moonbirds.sol | Moonbirds | 4.294 | Complex | ✅ |
-| NFT_06_Azuki.sol | Azuki | 1.541 | Complex | ✅ |
-| NFT_07_Doodles.sol | Doodles | 1.407 | Complex | ✅ |
-| NFT_08_Meebits.sol | Meebits | 1.349 | Complex | ✅ |
-| NFT_09_Toadz.sol | Toadz | 2.226 | Complex | ✅ |
-| NFT_10_Land.sol | Land | 2.432 | Complex | ✅ |
-
-### Token (ERC-20 & Derivatif) — 10 kontrak
-
-| File | Nama | LOC | Complexity | Compile |
-|---|---|---|---|---|
-| Token_01_TetherToken.sol | TetherToken | 893 | Complex | ✅ |
-| Token_02_WBTC.sol | WBTC | 1.317 | Complex | ✅ |
-| Token_03_LinkToken.sol | LinkToken | 589 | Complex | ✅ |
-| Token_04_YFI.sol | YFI | 449 | Medium | ✅ |
-| Token_05_OneInch.sol | OneInch | 2.235 | Complex | ✅ |
-| Token_06_GnosisToken.sol | GnosisToken | 301 | Medium | ❌ |
-| Token_07_BalancerGovernanceToken.sol | BalancerGovernanceToken | 2.987 | Complex | ✅ |
-| Token_08_ProxyERC20.sol | ProxyERC20 | 506 | Complex | ✅ |
-| Token_09_SimpleToken.sol | SimpleToken | 525 | Complex | ✅ |
-| Token_10_LQTYToken.sol | LQTYToken | 2.668 | Complex | ✅ |
-
-### Governance (DAO & Voting) — 10 kontrak
-
-| File | Nama | LOC | Complexity | Compile |
-|---|---|---|---|---|
-| Governance_01_GovernorBravoDelegator.sol | GovernorBravoDelegator | 525 | Complex | ✅ |
-| Governance_02_GovernorBravoDelegator.sol | GovernorBravoDelegator | 266 | Medium | ✅ |
-| Governance_03_FeiDAO.sol | FeiDAO | 3.516 | Complex | ❌ |
-| Governance_04_AaveGovernanceV2.sol | AaveGovernanceV2 | 2.751 | Complex | ✅ |
-| Governance_05_Governor.sol | Governor | 1.011 | Complex | ✅ |
-| Governance_06_GovernorAlpha.sol | GovernorAlpha | 323 | Medium | ✅ |
-| Governance_07_GovernorAlpha.sol | GovernorAlpha | 604 | Complex | ✅ |
-| Governance_08_ENSGovernor.sol | ENSGovernor | 3.751 | Complex | ✅ |
-| Governance_09_NounsDAOProxy.sol | NounsDAOProxy | 402 | Medium | ✅ |
-| Governance_10_GovernorAlpha.sol | GovernorAlpha | 348 | Medium | ✅ |
-
-### Utility (General Purpose) — 10 kontrak
-
-| File | Nama | LOC | Complexity | Compile |
-|---|---|---|---|---|
-| Utility_01_DAO.sol | DAO | 1.236 | Complex | ❌ |
-| Utility_02_GnosisSafe.sol | GnosisSafe | 1.132 | Complex | ✅ |
-| Utility_03_MultiSigWallet.sol | MultiSigWallet | 731 | Complex | ✅ |
-| Utility_04_Jug.sol | Jug | 313 | Medium | ✅ |
-| Utility_05_MultiSigWalletWithTimeLock.sol | MultiSigWalletWithTimeLock | 6.783 | Complex | ✅ |
-| Utility_06_Seaport.sol | Seaport | 11.395 | Complex | ✅ |
-| Utility_07_UniswapV3Factory.sol | UniswapV3Factory | 3.383 | Complex | ✅ |
-| Utility_08_SwapRouter.sol | SwapRouter | 2.096 | Complex | ✅ |
-| Utility_09_SwapRouter02.sol | SwapRouter02 | 3.878 | Complex | ✅ |
-| Utility_10_NonfungiblePositionManager.sol | NonfungiblePositionManager | 4.595 | Complex | ✅ |
+| Multicall | 43 | **Simple** | 0.5.x | ✅ |
+| Multicall2 | 70 | **Simple** | 0.5.x | ✅ |
+| DSProxyFactory | 183 | Medium | 0.5.x | ✅ |
+| ENSRegistryWithFallback | 236 | Medium | 0.5.x | ✅ |
+| ERC1820Registry | 194 | Medium | 0.5.x | ✅ |
+| GnosisSafeProxyFactory | 152 | Medium | 0.8.x | ✅ |
+| Jug (MakerDAO) | 141 | Medium | 0.5.x | ✅ |
+| MultiSigWallet (Gnosis) | 334 | Medium | 0.4.x | ✅ |
+| ReverseRegistrar (ENS) | 354 | Medium | 0.5.x | ✅ |
+| WyvernProxyRegistry | 383 | Medium | 0.4.x | ✅ |
+| GnosisSafe | 1.008 | Complex | 0.7.x | ✅ |
+| NonfungiblePositionManager | 3.957 | Complex | 0.7.x | ✅ |
+| SwapRouter02 | 3.276 | Complex | 0.7.x | ✅ |
+| UniswapV3Factory | 2.970 | Complex | 0.6.x | ✅ |
+| PublicResolver (ENS) | 342 | Medium | 0.8.x | ❌ (compile fail) |
 
 ---
 
-## Kontrak yang Gagal Compile (4 dari 50)
+## Statistik Dataset Keseluruhan (74 compile-ok)
 
-| Kontrak | Penyebab Perkiraan |
+| Statistik | Nilai |
 |---|---|
-| BoredApeYachtClub | Dependency/import tidak terpenuhi dalam single-file compile |
-| GnosisToken | Versi solc tidak kompatibel atau import issue |
-| FeiDAO | Import kompleks atau versi pragma tidak terdukung |
-| DAO | Versi solc sangat lama (The DAO, 2016) |
-
-Keempat kontrak ini **dikecualikan dari analisis** — hanya 46 kontrak valid yang dianalisis.
-
----
-
-## Distribusi Complexity Level (46 kontrak valid)
-
-| Complexity | Kriteria | Jumlah | Avg LOC | Avg Findings |
-|---|---|---|---|---|
-| Simple | < 100 LOC | 0 | — | — |
-| Medium | 100–500 LOC | 9 | 364 | 14.7 |
-| Complex | > 500 LOC | 37 | 2.170 | 13.9 |
-
-**Catatan**: Tidak ada kontrak Simple dalam dataset — wajar karena kontrak mainnet yang verified umumnya cukup kompleks.
+| SLOC terkecil | 43 (Multicall) |
+| SLOC terbesar | 3.957 (NonfungiblePositionManager) |
+| Rata-rata SLOC | ~889 |
+| Range solc | 0.4.x – 0.8.x |
+| Dominan era | 0.4.x–0.6.x (kontrak lama sebelum Solidity 0.8.0) |
+| Kontrak solc 0.8.x | ~15 kontrak |
 
 ---
 
-## Statistik Dataset Keseluruhan
+## Catatan Metodologi
 
-- Total LOC (46 valid): ~90.000 baris
-- LOC terkecil: 266 (GovernorBravoDelegator)
-- LOC terbesar: 11.395 (Seaport)
-- Range solc: 0.4.18 s/d 0.8.18
-- Sebagian besar kontrak menggunakan solc 0.4.x–0.6.x (era sebelum Solidity 0.8)
+- **SLOC** (Source Lines of Code = non-blank lines): digunakan sebagai ukuran kontrak, bukan raw LOC, karena Etherscan menambahkan blank lines dalam download yang menggelembungkan hitungan ~2×.
+- **Flattening effect**: Beberapa kontrak kecil di source aslinya (misal MakerDAO GemJoin ~40 baris) berukuran 129–192 SLOC setelah Etherscan meratakan import — diklasifikasikan Medium bukan Simple.
+- **contracts_selection.json** adalah file konfigurasi aktif yang menentukan dataset eksperimen. Semua notebook membaca dari file ini.

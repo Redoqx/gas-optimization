@@ -23,8 +23,11 @@ gas_optimization/
 │   ├── scripts/               ← run_benchmarks.js (generated)
 │   └── hardhat.config.js      ← solc 0.8.20, optimizer: false
 │
-├── contracts_dataset/         ← 50 file .sol
-├── contracts_metadata.json    ← metadata tiap kontrak
+├── contracts_dataset/         ← file .sol (kontrak lama)
+├── dataset/                   ← file .sol (kontrak expanded, terorganisir per domain)
+├── contracts_selection.json   ← konfigurasi aktif dataset (75 kontrak, 15/domain)
+├── contracts_metadata_expanded.json  ← metadata lengkap semua kontrak tersedia
+├── contracts_experiment_independent.json  ← 38 kontrak subset untuk independent experiment
 ├── results/                   ← output CSV/JSON
 ├── notebooks/                 ← Jupyter notebooks
 │   ├── pekan1_setup.ipynb

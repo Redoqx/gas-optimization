@@ -35,7 +35,7 @@ Contoh konkret: membaca state variable dari storage (operasi SLOAD) di dalam loo
 
 1. Membangun tool analisis statik Python yang mendeteksi 6 anti-pattern boros gas pada kode Solidity
 2. Mengukur penghematan gas empiris untuk tiap anti-pattern via Hardhat (local EVM)
-3. Menguji framework pada 50 kontrak real-world dari Etherscan mainnet
+3. Menguji framework pada 75 kontrak real-world dari Etherscan mainnet (15 per domain, 5 domain)
 4. Memvalidasi hasil dengan uji statistik (Wilcoxon, Chi-square, Kruskal-Wallis, Spearman)
 5. Membandingkan hasil dengan tool analisis komersial Slither
 
@@ -45,39 +45,43 @@ Contoh konkret: membaca state variable dari storage (operasi SLOAD) di dalam loo
 
 1. **Framework deteksi otomatis**: Tool Python open-source yang menganalisis file `.sol` via AST dan menghasilkan temuan terstruktur
 2. **Benchmark gas empiris**: Pengukuran penghematan gas nyata untuk 6 pola via eksekusi di EVM (bukan estimasi teoritis)
-3. **Dataset analisis**: Hasil deteksi pada 50 kontrak mainnet Ethereum mencakup 5 domain berbeda
+3. **Dataset analisis**: Hasil deteksi pada 74 kontrak mainnet Ethereum mencakup 5 domain berbeda (75 kontrak, 1 gagal compile)
 4. **Validasi statistik**: Bukti statistik bahwa pola-pola yang dideteksi memang berdampak signifikan terhadap konsumsi gas
-5. **Modul auto-refactoring**: Implementasi awal patch otomatis source-level untuk 3 dari 6 anti-pattern
+5. **Modul auto-refactoring**: Implementasi awal patch otomatis source-level untuk 2 dari 6 anti-pattern (public_vs_external, unoptimized_loop)
 
 ---
 
 ## Batasan Penelitian
 
-- Dataset terbatas pada 50 kontrak dari Etherscan (mainnet Ethereum, bukan L2/sidechain)
+- Dataset terbatas pada 75 kontrak dari Etherscan (mainnet Ethereum, bukan L2/sidechain)
 - Pengukuran gas menggunakan Hardhat local EVM, bukan transaksi mainnet aktual
 - Optimizer Solidity dinonaktifkan untuk konsistensi pengukuran (kondisi tidak mewakili deployment produksi yang mengaktifkan optimizer)
-- Refactoring otomatis hanya untuk 3 dari 6 anti-pattern (3 lainnya butuh analisis alur data penuh)
-- Perbandingan Slither terbatas karena ketidakkompatibilan versi solc lama (0.4.x) dengan Slither versi terbaru
+- Refactoring otomatis hanya untuk 2 dari 6 anti-pattern dengan hasil bermakna (4 lainnya butuh analisis alur data penuh)
+- Perbandingan Slither terbatas karena ketidakkompatibilan versi solc lama (0.4.x) dengan Slither v0.11.5
+- `unchecked_arithmetic`: 0 findings pada 74 kontrak dataset — seluruh kontrak didominasi era solc 0.4.x–0.6.x yang tidak menggunakan fitur `unchecked {}` Solidity 0.8.0
 
 ---
 
 ## 6 Anti-Pattern yang Diteliti
 
-| No | Nama | Penjelasan Singkat | Potensi Penghematan |
+| No | Nama | Penjelasan Singkat | Penghematan Empiris |
 |---|---|---|---|
-| 1 | Redundant SLOAD | State variable dibaca dari storage >1x tanpa cache lokal | Rendah–Sedang |
-| 2 | Unoptimized Loop | `.length` array dibaca dari storage di setiap iterasi loop | Sedang |
-| 3 | String vs Bytes32 | Pakai `string` untuk teks pendek yang bisa pakai `bytes32` | Sedang |
-| 4 | Public vs External | Fungsi `public` yang tidak pernah dipanggil secara internal | Sedang |
-| 5 | Unchecked Arithmetic | Operasi `+`/`-` di loop yang sudah pasti tidak overflow | Tinggi |
-| 6 | Dead Code | Fungsi yang tidak pernah dipanggil oleh siapapun | Rendah (deployment) |
+| 1 | Redundant SLOAD | State variable dibaca dari storage >1x tanpa cache lokal | 0.77% |
+| 2 | Unoptimized Loop | `.length` array dibaca dari storage di setiap iterasi loop | 2.01% |
+| 3 | String vs Bytes32 | Pakai `string` untuk teks pendek yang bisa pakai `bytes32` | 3.87% |
+| 4 | Public vs External | Fungsi `public` yang tidak pernah dipanggil secara internal | 5.09% |
+| 5 | Unchecked Arithmetic | Operasi `+`/`-` di loop yang sudah pasti tidak overflow | 20.38% |
+| 6 | Dead Code | Fungsi yang tidak pernah dipanggil oleh siapapun | 0.00% (runtime) |
 
 ---
 
 ## Hasil Kunci (Ringkasan)
 
-- **646 temuan** terdeteksi pada 46 kontrak valid dari total 50 kontrak dataset
-- **38 dari 46 kontrak** (82.6%) memiliki setidaknya satu temuan
-- **Penghematan gas tertinggi**: Unchecked Arithmetic (20.38%)
-- **Uji Wilcoxon**: W=15.0, p=0.031 → penghematan gas **signifikan secara statistik** (α=0.05)
-- **Anti-pattern paling umum**: Public vs External (283 temuan, 43.8% dari total)
+- **1.655 temuan** terdeteksi pada 74 kontrak valid dari total 75 kontrak dataset
+- **66 dari 74 kontrak** (89.2%) memiliki setidaknya satu temuan
+- **Penghematan gas tertinggi**: Unchecked Arithmetic (20.38%) — diukur via benchmark synthetic
+- **Uji Wilcoxon per-pattern**: W=15.0, p=0.031 → penghematan gas **signifikan secara statistik** (α=0.05)
+- **Uji Wilcoxon per-contract** (n=65): W=2145.0, p<0.001 → konfirmasi kuat
+- **Anti-pattern paling umum**: Public vs External (649 temuan, 39.2% dari total), disusul Redundant SLOAD (634, 38.3%)
+- **Domain tertinggi temuan**: NFT (539 temuan), Token (478 temuan)
+- **Domain tertinggi potensi hemat gas**: Token (median savings 49.044 gas/contract)

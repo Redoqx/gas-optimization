@@ -22,7 +22,7 @@ Penelitian ini berada di persimpangan tiga bidang:
 | Versi Solidity | ≥ 0.4.x (namun praktis 0.6.x+) | 0.4.x – 0.8.x (py-solcx multi-versi) |
 | Gas-specific detectors | Beberapa (costly-loop, dll) | 6 detektor fokus gas |
 | Kuantifikasi gas | Tidak (hanya flag) | Ya (gas diff per pattern, via Hardhat) |
-| Kecepatan analisis | ~1.3s/kontrak | ~0.12s/kontrak |
+| Kecepatan analisis | ~1.7s/kontrak (0.8.x) | ~0.20s/kontrak (rata-rata semua kompleksitas) |
 | Dataset kontrak lama | Terbatas (0.4.x sering gagal) | ✅ Mendukung penuh |
 
 **Perbedaan utama**: Slither dirancang untuk analisis keamanan umum (reentrancy, access control, dll) dengan gas sebagai fitur sekunder. Framework kita dirancang khusus untuk gas optimization dengan validasi kuantitatif empiris via benchmark Hardhat.

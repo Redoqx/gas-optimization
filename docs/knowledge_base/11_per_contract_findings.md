@@ -1,162 +1,167 @@
-# Per-Contract Findings: Data Lengkap 50 Kontrak
+# Per-Contract Findings: Data Lengkap 74 Kontrak
+
+**Dataset aktif**: `contracts_selection.json` (75 kontrak, 74 compile-ok)
 
 **Keterangan kolom**:
-- `compile`: ✅ berhasil / ❌ gagal compile
 - `rs` = redundant_sload | `ul` = unoptimized_loop | `sb` = string_vs_bytes32
 - `pe` = public_vs_external | `ua` = unchecked_arithmetic | `dc` = dead_code
 - `TOTAL` = jumlah semua findings
 
 ---
 
-## Domain: DeFi (10 kontrak)
+## Domain: DeFi (15 kontrak, 15 compile-ok)
 
-| No | Nama | LOC | compile | rs | ul | sb | pe | ua | dc | TOTAL |
-|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | WETH9 | 1.511 | ✅ | 3 | 0 | 2 | 4 | 0 | 0 | **9** |
-| 2 | UniswapV2Router02 | 1.559 | ✅ | 18 | 0 | 0 | 3 | 0 | 2 | **23** |
-| 3 | Dai | 379 | ✅ | 7 | 0 | 3 | 0 | 0 | 0 | **10** |
-| 4 | FiatTokenProxy | 657 | ✅ | 0 | 0 | 0 | 0 | 0 | 0 | **0** |
-| 5 | Uni | 1.163 | ✅ | 14 | 0 | 11 | 3 | 0 | 0 | **28** |
-| 6 | InitializableAdminUpgradeabilityProxy | 1.389 | ✅ | 0 | 0 | 0 | 0 | 0 | 0 | **0** |
-| 7 | MiniMeToken | 1.199 | ✅ | 11 | 0 | 9 | 12 | 0 | 0 | **32** |
-| 8 | AppProxyUpgradeable | 783 | ✅ | 0 | 0 | 0 | 8 | 0 | 3 | **11** |
-| 9 | Comp | 301 | ✅ | 9 | 0 | 6 | 3 | 0 | 0 | **18** |
-| 10 | DSToken | 947 | ✅ | 14 | 0 | 0 | 21 | 0 | 8 | **43** |
-| | **DeFi Subtotal** | | | **76** | **0** | **31** | **54** | **0** | **13** | **174** |
-
-**Catatan**:
-- FiatTokenProxy dan InitializableAdminUpgradeabilityProxy (keduanya proxy pattern Aave/OpenZeppelin) menghasilkan 0 temuan karena arsitektur proxy yang meminimalkan storage access langsung
-- UniswapV2Router02 memiliki 18 redundant_sload terbanyak di domain DeFi — contract stateless yang sering membaca state dari pasangan trading
-- DSToken (Dai System Token era MakerDAO lama) sangat boros gas: 14 redundant SLOAD + 21 public functions + 8 dead code
-
----
-
-## Domain: NFT (10 kontrak, 1 gagal compile)
-
-| No | Nama | LOC | compile | rs | ul | sb | pe | ua | dc | TOTAL |
-|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | BoredApeYachtClub | 4.033 | ❌ | — | — | — | — | — | — | **—** |
-| 2 | CryptoPunksMarket | 491 | ✅ | 20 | 0 | 4 | 11 | 0 | 0 | **35** |
-| 3 | MutantApeYachtClub | 1.819 | ✅ | 0 | 0 | 0 | 2 | 0 | 0 | **2** |
-| 4 | CloneX | 1.655 | ✅ | 0 | 0 | 0 | 2 | 0 | 0 | **2** |
-| 5 | Moonbirds | 4.294 | ✅ | 0 | 0 | 2 | 2 | 2 | 1 | **7** |
-| 6 | Azuki | 1.541 | ✅ | 0 | 0 | 0 | 2 | 0 | 0 | **2** |
-| 7 | Doodles | 1.407 | ✅ | 0 | 0 | 0 | 2 | 0 | 0 | **2** |
-| 8 | Meebits | 1.349 | ✅ | 21 | 0 | 3 | 3 | 0 | 0 | **27** |
-| 9 | Toadz | 2.226 | ✅ | 0 | 0 | 0 | 2 | 0 | 0 | **2** |
-| 10 | Land | 2.432 | ✅ | 0 | 0 | 3 | 0 | 8 | 2 | **13** |
-| | **NFT Subtotal** | | | **41** | **0** | **12** | **26** | **10** | **3** | **92** |
+| Nama | SLOC | Cx | rs | ul | sb | pe | ua | dc | TOTAL |
+|---|---|---|---|---|---|---|---|---|---|
+| AppProxyUpgradeable | 279 | M | 0 | 0 | 0 | 8 | 0 | 3 | **11** |
+| Dai | 169 | M | 7 | 0 | 3 | 0 | 0 | 0 | **10** |
+| DaiJoin | 192 | M | 1 | 0 | 0 | 1 | 0 | 0 | **2** |
+| ETHJoin | 192 | M | 1 | 0 | 0 | 1 | 0 | 0 | **2** |
+| GemJoin | 162 | M | 1 | 0 | 0 | 0 | 0 | 0 | **1** |
+| KyberNetworkProxy | 484 | M | 24 | 2 | 0 | 40 | 0 | 2 | **68** |
+| Spotter | 129 | M | 0 | 0 | 0 | 0 | 0 | 0 | **0** |
+| UniswapV2Factory | 414 | M | 17 | 0 | 2 | 1 | 0 | 0 | **20** |
+| UniswapV2Pair | 396 | M | 11 | 0 | 2 | 1 | 0 | 0 | **14** |
+| Vat | 238 | M | 24 | 0 | 0 | 0 | 0 | 0 | **24** |
+| CErc20 | 2.178 | C | 33 | 0 | 6 | 1 | 0 | 9 | **49** |
+| CErc20Delegator (cDAI) | 1.901 | C | 0 | 0 | 2 | 1 | 0 | 3 | **6** |
+| CErc20Delegator (cCOMP) | 1.901 | C | 0 | 0 | 2 | 1 | 0 | 3 | **6** |
+| CEther | 2.138 | C | 32 | 0 | 7 | 1 | 0 | 9 | **49** |
+| InitializableAdminUpgradeabilityProxy | 1.185 | C | 0 | 0 | 0 | 0 | 0 | 0 | **0** |
+| **DeFi Subtotal** | | | **151** | **2** | **24** | **56** | **0** | **29** | **262** |
 
 **Catatan**:
-- CryptoPunksMarket (2017, solc 0.4.x) memiliki 35 temuan — kontrak NFT pertama, ditulis tanpa mempertimbangkan gas optimization
-- Meebits juga solc 0.4.x, dengan 21 redundant SLOAD
-- Kontrak NFT modern (BAYC, MutantApe, Azuki, Doodles, Toadz) — semua menggunakan ERC-721 standar OpenZeppelin — hanya memiliki 2 temuan (public_vs_external minimal karena fungsi-fungsi override interface)
-- Land (The Sandbox) memiliki 8 unchecked_arithmetic — solc 0.8.x dengan loop yang bisa dioptimasi
-- BoredApeYachtClub gagal compile karena dependency/import yang tidak dapat diselesaikan dalam single-file analysis
+- KyberNetworkProxy (68 temuan) — kontrak era 0.6.x dengan banyak fungsi `public` dan storage reads berulang
+- Vat (24 rs) — MakerDAO CDP engine, banyak akses ke mapping storage tanpa caching
+- Spotter & InitializableAdminUpgradeabilityProxy: 0 findings (proxy pattern minimal / modern design)
+- CErc20 dan CEther hampir identik strukturnya — masing-masing 49 findings
 
 ---
 
-## Domain: Token (10 kontrak, 1 gagal compile)
+## Domain: NFT (15 kontrak, 15 compile-ok)
 
-| No | Nama | LOC | compile | rs | ul | sb | pe | ua | dc | TOTAL |
-|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | TetherToken | 893 | ✅ | 16 | 0 | 4 | 27 | 0 | 0 | **47** |
-| 2 | WBTC | 1.317 | ✅ | 13 | 0 | 4 | 31 | 0 | 4 | **52** |
-| 3 | LinkToken | 589 | ✅ | 5 | 0 | 2 | 19 | 0 | 2 | **28** |
-| 4 | YFI | 449 | ✅ | 6 | 0 | 6 | 15 | 0 | 5 | **32** |
-| 5 | OneInch | 2.235 | ✅ | 9 | 0 | 2 | 16 | 0 | 5 | **32** |
-| 6 | GnosisToken | 301 | ❌ | — | — | — | — | — | — | **—** |
-| 7 | BalancerGovernanceToken | 2.987 | ✅ | 6 | 0 | 5 | 20 | 0 | 10 | **41** |
-| 8 | ProxyERC20 | 506 | ✅ | 5 | 0 | 0 | 18 | 0 | 0 | **23** |
-| 9 | SimpleToken | 525 | ✅ | 0 | 0 | 2 | 0 | 0 | 0 | **2** |
-| 10 | LQTYToken | 2.668 | ✅ | 0 | 0 | 0 | 0 | 0 | 1 | **1** |
-| | **Token Subtotal** | | | **60** | **0** | **25** | **146** | **0** | **27** | **258** |
+| Nama | SLOC | Cx | rs | ul | sb | pe | ua | dc | TOTAL |
+|---|---|---|---|---|---|---|---|---|---|
+| CryptoPunksMarket | 212 | M | 20 | 0 | 4 | 11 | 0 | 0 | **35** |
+| AdminUpgradeabilityProxy | 1.515 | C | 0 | 0 | 18 | 25 | 0 | 2 | **45** |
+| AvastarTeleporter | 2.171 | C | 37 | 0 | 19 | 11 | 0 | 7 | **74** |
+| Azuki | 1.335 | C | 0 | 0 | 0 | 2 | 0 | 0 | **2** |
+| BaseRegistrarImplementation | 664 | C | 10 | 0 | 0 | 10 | 0 | 3 | **23** |
+| CloneX | 1.308 | C | 0 | 0 | 0 | 2 | 0 | 0 | **2** |
+| DCLRegistrar | 1.570 | C | 26 | 0 | 23 | 34 | 0 | 7 | **90** |
+| Doodles | 1.206 | C | 0 | 0 | 0 | 2 | 0 | 0 | **2** |
+| KittyCore (CryptoKitties) | 1.685 | C | 19 | 0 | 4 | 9 | 0 | 0 | **32** |
+| LANDProxy (Decentraland) | 1.256 | C | 24 | 0 | 12 | 4 | 0 | 3 | **43** |
+| Meebits | 567 | C | 21 | 0 | 3 | 3 | 0 | 0 | **27** |
+| MutantApeYachtClub | 1.550 | C | 0 | 0 | 0 | 2 | 0 | 0 | **2** |
+| Parcel | 733 | C | 21 | 0 | 7 | 26 | 0 | 3 | **57** |
+| SuperRareV2 | 999 | C | 16 | 0 | 12 | 20 | 0 | 3 | **51** |
+| WrappedPunk | 1.376 | C | 14 | 0 | 10 | 22 | 0 | 8 | **54** |
+| **NFT Subtotal** | | | **208** | **0** | **112** | **183** | **0** | **36** | **539** |
 
 **Catatan**:
-- Domain Token memiliki findings terbanyak (258) karena kontrak token ERC-20 era lama banyak mengekspos fungsi `public` yang seharusnya `external`
-- WBTC (52) = kontrak tertinggi di seluruh dataset, terutama 31 public_vs_external
-- TetherToken (Tether/USDT) yang lama memiliki 47 temuan — arsitektur manual tanpa library modern
-- LQTYToken (Liquity, 2021) hanya 1 dead_code — kontrak modern sudah mengoptimasi
-- SimpleToken (0 redundant, 0 loop, 0 unchecked) — kontrak sederhana, relatif bersih
-- BalancerGovernanceToken (10 dead_code) — library Solidity yang tertanam memiliki banyak fungsi utilitas tidak terpakai
+- **DCLRegistrar memiliki temuan terbanyak** (90) — kontrak era 0.5.x Decentraland dengan banyak string dan storage reads
+- **AvastarTeleporter**: 37 redundant_sload tertinggi di NFT
+- Kontrak modern (Azuki, CloneX, Doodles, MutantApeYachtClub, Meebits) era 0.8.x: masing-masing hanya 2 findings (public_vs_external pada fungsi override)
+- String vs Bytes32 tinggi di NFT (112) karena banyak kontrak menyimpan metadata sebagai string
 
 ---
 
-## Domain: Governance (10 kontrak, 1 gagal compile)
+## Domain: Token (15 kontrak, 15 compile-ok)
 
-| No | Nama | LOC | compile | rs | ul | sb | pe | ua | dc | TOTAL |
-|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | GovernorBravoDelegator (v1) | 525 | ✅ | 0 | 0 | 0 | 0 | 0 | 0 | **0** |
-| 2 | GovernorBravoDelegator (v2) | 266 | ✅ | 0 | 0 | 0 | 0 | 0 | 0 | **0** |
-| 3 | FeiDAO | 3.516 | ❌ | — | — | — | — | — | — | **—** |
-| 4 | AaveGovernanceV2 | 2.751 | ✅ | 4 | 0 | 2 | 4 | 0 | 3 | **13** |
-| 5 | Governor (OpenZeppelin) | 1.011 | ✅ | 6 | 0 | 6 | 12 | 0 | 0 | **24** |
-| 6 | GovernorAlpha (v1) | 323 | ✅ | 3 | 0 | 6 | 8 | 0 | 0 | **17** |
-| 7 | GovernorAlpha (v2) | 604 | ✅ | 0 | 0 | 2 | 8 | 0 | 0 | **10** |
-| 8 | ENSGovernor | 3.751 | ✅ | 0 | 0 | 0 | 4 | 0 | 2 | **6** |
-| 9 | NounsDAOProxy | 402 | ✅ | 0 | 0 | 3 | 0 | 0 | 0 | **3** |
-| 10 | GovernorAlpha (v3) | 348 | ✅ | 0 | 0 | 5 | 9 | 0 | 0 | **14** |
-| | **Governance Subtotal** | | | **13** | **0** | **24** | **45** | **0** | **5** | **87** |
+| Nama | SLOC | Cx | rs | ul | sb | pe | ua | dc | TOTAL |
+|---|---|---|---|---|---|---|---|---|---|
+| BAToken | 146 | M | 11 | 0 | 3 | 10 | 0 | 0 | **24** |
+| LinkToken | 250 | M | 5 | 0 | 2 | 19 | 0 | 2 | **28** |
+| MANAToken | 222 | M | 8 | 0 | 2 | 19 | 0 | 2 | **31** |
+| ProxyERC20 | 408 | M | 5 | 0 | 0 | 18 | 0 | 0 | **23** |
+| SimpleToken (ApeCoin) | 451 | M | 0 | 0 | 2 | 0 | 0 | 0 | **2** |
+| TetherToken | 377 | M | 16 | 0 | 4 | 27 | 0 | 0 | **47** |
+| AdminUpgradeabilityProxy (BUSD) | 581 | C | 33 | 0 | 3 | 25 | 0 | 0 | **61** |
+| AdminUpgradeabilityProxy (PAXG) | 687 | C | 37 | 0 | 3 | 28 | 0 | 0 | **68** |
+| BalancerGovernanceToken | 1.280 | C | 6 | 0 | 5 | 20 | 0 | 10 | **41** |
+| FiatTokenProxy (USDC) | 2.715 | C | 0 | 0 | 0 | 0 | 0 | 0 | **0** |
+| GraphToken | 832 | C | 9 | 0 | 2 | 12 | 0 | 4 | **27** |
+| LQTYToken | 2.135 | C | 0 | 0 | 0 | 0 | 0 | 1 | **1** |
+| OneInch | 964 | C | 9 | 0 | 2 | 16 | 0 | 5 | **32** |
+| OwnedUpgradeabilityProxy (TUSD) | 1.291 | C | 17 | 0 | 3 | 11 | 0 | 10 | **41** |
+| WBTC | 564 | C | 13 | 0 | 4 | 31 | 0 | 4 | **52** |
+| **Token Subtotal** | | | **169** | **0** | **35** | **236** | **0** | **38** | **478** |
 
 **Catatan**:
-- GovernorBravoDelegator (Compound v1 dan v2) tidak menghasilkan temuan — kontrak delegator murni yang tidak mengandung logic
-- Governor (OpenZeppelin) memiliki 24 temuan — library governance framework yang besar
-- Domain Governance memiliki pola string_vs_bytes32 relatif banyak (24) karena kontrak governance sering menyimpan nama/deskripsi proposal sebagai `string`
-- FeiDAO gagal compile karena import kompleks (Tribe/FEI ecosystem)
+- **Public_vs_external dominasi** (236 findings) — token ERC-20 era lama menggunakan `public` secara masif
+- TetherToken: 16+27=43 findings (rs+pe) — kontrak USDT 2017 era 0.4.x
+- FiatTokenProxy (USDC) & LQTYToken: hampir 0 findings — kontrak modern yang sudah dioptimasi
+- Dua AdminUpgradeabilityProxy (BUSD/PAXG) memiliki struktur mirip tapi berbeda ukuran
 
 ---
 
-## Domain: Utility (10 kontrak, 1 gagal compile)
+## Domain: Governance (15 kontrak, 15 compile-ok)
 
-| No | Nama | LOC | compile | rs | ul | sb | pe | ua | dc | TOTAL |
-|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | DAO (The DAO) | 1.236 | ❌ | — | — | — | — | — | — | **—** |
-| 2 | GnosisSafe | 1.132 | ✅ | 0 | 0 | 0 | 2 | 0 | 0 | **2** |
-| 3 | MultiSigWallet | 731 | ✅ | 11 | 5 | 0 | 10 | 0 | 0 | **26** |
-| 4 | Jug (MakerDAO) | 313 | ✅ | 3 | 0 | 0 | 0 | 0 | 0 | **3** |
-| 5 | MultiSigWalletWithTimeLock | 6.783 | ✅ | 0 | 0 | 0 | 0 | 0 | 2 | **2** |
-| 6 | Seaport (OpenSea) | 11.395 | ✅ | 0 | 0 | 0 | 0 | 0 | 2 | **2** |
-| 7 | UniswapV3Factory | 3.383 | ✅ | 0 | 0 | 0 | 0 | 0 | 0 | **0** |
-| 8 | SwapRouter | 2.096 | ✅ | 0 | 0 | 0 | 0 | 0 | 0 | **0** |
-| 9 | SwapRouter02 | 3.878 | ✅ | 0 | 0 | 0 | 0 | 0 | 0 | **0** |
-| 10 | NonfungiblePositionManager | 4.595 | ✅ | 0 | 0 | 0 | 0 | 0 | 0 | **0** |
-| | **Utility Subtotal** | | | **14** | **5** | **0** | **12** | **0** | **4** | **35** |
+| Nama | SLOC | Cx | rs | ul | sb | pe | ua | dc | TOTAL |
+|---|---|---|---|---|---|---|---|---|---|
+| Comp | 249 | M | 9 | 0 | 6 | 3 | 0 | 0 | **18** |
+| DSToken (MKR) | 371 | M | 14 | 0 | 0 | 21 | 0 | 8 | **43** |
+| Governor (ENS) | 443 | M | 6 | 0 | 6 | 12 | 0 | 0 | **24** |
+| GovernorAlpha (Compound) | 252 | M | 3 | 0 | 6 | 8 | 0 | 0 | **17** |
+| GovernorBravoDelegate | 465 | M | 0 | 0 | 3 | 2 | 0 | 0 | **5** |
+| GovernorBravoDelegator (Compound) | 465 | M | 0 | 0 | 3 | 2 | 0 | 0 | **5** |
+| GovernorBravoDelegator (Uniswap) | 200 | M | 0 | 0 | 0 | 0 | 0 | 0 | **0** |
+| NounsDAOProxy | 336 | M | 0 | 0 | 3 | 0 | 0 | 0 | **3** |
+| Tribe (FEI) | 322 | M | 0 | 0 | 4 | 3 | 0 | 0 | **7** |
+| Uni (UNI) | 493 | M | 14 | 0 | 11 | 3 | 0 | 0 | **28** |
+| YFI | 191 | M | 6 | 0 | 6 | 15 | 0 | 5 | **32** |
+| AaveGovernanceV2 | 1.234 | C | 4 | 0 | 2 | 4 | 0 | 3 | **13** |
+| AdminUpgradeabilityProxy (Aave) | 1.117 | C | 0 | 0 | 4 | 6 | 0 | 0 | **10** |
+| MiniMeToken (LDO) | 516 | C | 11 | 0 | 9 | 12 | 0 | 0 | **32** |
+| Token (ANT) | 528 | C | 8 | 0 | 7 | 17 | 0 | 3 | **35** |
+| **Governance Subtotal** | | | **75** | **0** | **70** | **108** | **0** | **19** | **272** |
 
 **Catatan**:
-- UniswapV3 contracts (Factory, SwapRouter, SwapRouter02, NonfungiblePositionManager) = **0 temuan** semua — kontrak modern (2021) yang sudah highly optimized untuk gas, ditulis oleh tim Uniswap Labs yang sangat sadar gas efficiency
-- Seaport (OpenSea, 2022) = hanya 2 dead_code — kontrak yang diaudit ketat
-- MultiSigWallet (Gnosis multisig lama, solc 0.4.x) = satu-satunya kontrak dengan `unoptimized_loop` (5 temuan)
-- The DAO gagal compile — kontrak 2016 yang sangat lama (terkait dengan hack DAO yang terkenal)
-- GnosisSafe modern = hanya 2 temuan minimal
+- DSToken (MKR): 43 findings — kontrak governance MakerDAO era lama
+- GovernorBravoDelegator (Uniswap, LOC=200): 0 findings — versi lebih modern
+- String_vs_bytes32 tinggi (70) di Governance — kontrak governance banyak menyimpan string untuk deskripsi proposal
 
 ---
 
-## Kontrak dengan 0 Findings (Bersih)
+## Domain: Utility (14 compile-ok dari 15)
 
-8 kontrak dari 46 valid menghasilkan 0 findings:
+| Nama | SLOC | Cx | rs | ul | sb | pe | ua | dc | TOTAL |
+|---|---|---|---|---|---|---|---|---|---|
+| Multicall | 43 | **S** | 0 | 0 | 0 | 8 | 0 | 0 | **8** |
+| Multicall2 | 70 | **S** | 0 | 0 | 0 | 10 | 0 | 0 | **10** |
+| DSProxyFactory | 183 | M | 6 | 0 | 0 | 5 | 0 | 0 | **11** |
+| ENSRegistryWithFallback | 236 | M | 1 | 0 | 0 | 8 | 0 | 0 | **9** |
+| ERC1820Registry | 194 | M | 1 | 0 | 1 | 0 | 0 | 0 | **2** |
+| GnosisSafeProxyFactory | 152 | M | 0 | 0 | 0 | 0 | 0 | 0 | **0** |
+| Jug (MakerDAO) | 141 | M | 3 | 0 | 0 | 0 | 0 | 0 | **3** |
+| MultiSigWallet | 334 | M | 11 | 5 | 0 | 10 | 0 | 0 | **26** |
+| ReverseRegistrar | 354 | M | 0 | 0 | 0 | 2 | 0 | 0 | **2** |
+| WyvernProxyRegistry | 383 | M | 9 | 0 | 1 | 21 | 0 | 0 | **31** |
+| GnosisSafe | 1.008 | C | 0 | 0 | 0 | 2 | 0 | 0 | **2** |
+| NonfungiblePositionManager | 3.957 | C | 0 | 0 | 0 | 0 | 0 | 0 | **0** |
+| SwapRouter02 | 3.276 | C | 0 | 0 | 0 | 0 | 0 | 0 | **0** |
+| UniswapV3Factory | 2.970 | C | 0 | 0 | 0 | 0 | 0 | 0 | **0** |
+| *(PublicResolver — compile fail)* | 342 | M | — | — | — | — | — | — | **—** |
+| **Utility Subtotal** | | | **31** | **5** | **2** | **66** | **0** | **0** | **104** |
 
-| Kontrak | Domain | LOC | Keterangan |
-|---|---|---|---|
-| FiatTokenProxy | DeFi | 657 | Proxy pattern, no direct logic |
-| InitializableAdminUpgradeabilityProxy | DeFi | 1.389 | Proxy pattern |
-| UniswapV3Factory | Utility | 3.383 | Modern, highly optimized |
-| SwapRouter | Utility | 2.096 | Modern, highly optimized |
-| SwapRouter02 | Utility | 3.878 | Modern, highly optimized |
-| NonfungiblePositionManager | Utility | 4.595 | Modern, highly optimized |
-| GovernorBravoDelegator (v1) | Governance | 525 | Pure delegator, no logic |
-| GovernorBravoDelegator (v2) | Governance | 266 | Pure delegator, no logic |
-
-**Pola**: Kontrak modern (solc 0.8.x, post-2021) yang ditulis oleh tim berpengalaman dan sudah diaudit umumnya tidak memiliki anti-pattern yang terdeteksi. Proxy contracts juga bersih karena tidak mengandung application logic langsung.
+**Catatan**:
+- **MultiSigWallet**: satu-satunya kontrak dengan unoptimized_loop (5 findings, loop dengan `.owners.length`)
+- **Multicall & Multicall2**: kontrak Simple — hanya public_vs_external (semua fungsi bisa external)
+- Empat kontrak Uniswap v3/Gnosis Safe era modern: 0 findings — dikembangkan dengan gas optimization sebagai prioritas utama
+- **WyvernProxyRegistry** (31 findings): kontrak OpenSea era lama dengan banyak fungsi public
 
 ---
 
-## Rekap Total Keseluruhan
+## Ringkasan Cross-Domain
 
-| Domain | n valid | Total Findings | Avg/kontrak | Kontrak dgn findings |
-|---|---|---|---|---|
-| DeFi | 10 | 174 | 17.4 | 8/10 (80%) |
-| NFT | 9 | 92 | 10.2 | 7/9 (78%) |
-| Token | 9 | 258 | 28.7 | 8/9 (89%) |
-| Governance | 9 | 87 | 9.7 | 7/9 (78%) |
-| Utility | 9 | 35 | 3.9 | 6/9 (67%) |
-| **TOTAL** | **46** | **646** | **14.0** | **38/46 (83%)** |
+| Domain | n compile-ok | Total Findings | Avg/Contract | Max | % dari Total |
+|---|---|---|---|---|---|
+| DeFi | 15 | 262 | 17.5 | 68 (KyberNetworkProxy) | 15.8% |
+| NFT | 15 | 539 | 35.9 | 90 (DCLRegistrar) | 32.6% |
+| Token | 15 | 478 | 31.9 | 68 (AdminUpgradeabilityProxy PAXG) | 28.9% |
+| Governance | 15 | 272 | 18.1 | 43 (DSToken) | 16.4% |
+| Utility | 14 | 104 | 7.4 | 31 (WyvernProxyRegistry) | 6.3% |
+| **TOTAL** | **74** | **1.655** | **22.4** | **90** | **100%** |
+
+**Legend**: Cx = Complexity (S=Simple, M=Medium, C=Complex)
