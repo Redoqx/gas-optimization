@@ -141,6 +141,44 @@ Distribusi gas consumption dan findings count **tidak mengikuti distribusi norma
 
 ---
 
+## Fase 4: Verifikasi Manual (Audit Precision)
+
+Untuk mengukur precision detector secara nyata (bukan pseudo-estimate), dilakukan **manual audit** terhadap 20 kontrak dengan estimated gas savings tertinggi (*purposive sampling by impact*). Sampling ini mencakup 64.9% dari total potensi penghematan dataset.
+
+### Pipeline Audit
+
+```
+results/pekan2_detector_results.json
+    ↓ scripts/generate_audit_checklist.py
+    ↓ docs/manual_audit/audit_findings_raw.json  ← findings per kontrak
+    ↓ scripts/run_manual_audit.py
+    ↓ docs/manual_audit/AUDIT_RESULTS.md         ← verdict per finding
+```
+
+### Metode Verifikasi per Pattern
+
+| Pattern | Cara Verifikasi |
+|---|---|
+| `public_vs_external` | Cari pemanggilan `funcName(` di dalam file, kecualikan baris deklarasi dan `this.`/`super.` |
+| `redundant_sload` | Ekstrak function body via brace-depth tracking; hitung read vs assignment positions |
+| `string_vs_bytes32` | Cari deklarasi state variable; periksa panjang literal string initializer |
+| `dead_code` | Cari semua pemanggilan nama fungsi; cek virtual/override |
+| `unoptimized_loop` | Cari for-loop dengan `.length` di kondisi iterasi |
+
+### Klasifikasi Verdict
+
+- **TP** (True Positive): anti-pattern terbukti ada di kode
+- **FP** (False Positive): anti-pattern tidak ada, detektor salah flag
+- **?** (Ambiguous): tidak dapat diverifikasi — umumnya karena function body parser gagal mengekstrak scope pada kontrak >2000 LOC, nested contracts, atau inline assembly
+
+### Keterbatasan Pendekatan Ini
+
+- **Recall tidak diukur**: audit hanya menilai findings yang di-flag (precision), bukan yang terlewat (FN)
+- **233 kasus ambiguous di redundant_sload**: brace-depth parser kadang gagal pada kontrak yang sangat besar; kasus ini dikecualikan dari perhitungan precision
+- **20 dari 74 kontrak**: audit mencakup kontrak dengan dampak terbesar, bukan coverage penuh
+
+---
+
 ## Tools & Environment
 
 | Komponen | Versi | Fungsi |

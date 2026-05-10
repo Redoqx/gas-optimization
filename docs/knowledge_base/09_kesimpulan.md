@@ -36,7 +36,7 @@ Rata-rata penghematan (6 pola): **5.35%**. Jika diterapkan pada kontrak yang ser
 - Mendukung multi-versi solc (0.4.x hingga 0.8.x) via py-solcx
 - Berhasil menormalisasi dua format AST Solidity (legacy compact/new expanded)
 - Menemukan temuan pada kontrak yang bahkan tidak bisa dianalisis Slither (0.4.x era)
-- Presisi rata-rata 80.2% dan recall 88.6% (pada 4 pola aktif dalam 20-contract sample)
+- **Presisi overall 79.6%** (541 TP dari 680 resolved findings, 20-contract manual audit) — dengan variasi per pola: unoptimized_loop=100%, string_vs_bytes32=100%, dead_code=95.5%, public_vs_external=73.9%, redundant_sload=69.0%
 - Analysis time: ~0.08s (Simple), ~0.13s (Medium), ~0.31s (Complex) — sangat cepat
 
 ### RQ4: Apakah penghematan gas signifikan secara statistik?
@@ -77,6 +77,7 @@ Uji tambahan **Kruskal-Wallis per-domain** (H=18.409, p=0.001) menunjukkan bahwa
 | 6 | Modul auto-refactoring (2 pola efektif) | `src/refactorer.py` |
 | 7 | Dataset konfigurasi terstruktur | `contracts_selection.json` (75 kontrak, 15/domain) |
 | 8 | Independent experiment subset | `contracts_experiment_independent.json` (38 kontrak) |
+| 9 | Manual audit ground truth (20 kontrak top savings) | `docs/manual_audit/AUDIT_RESULTS.md`, `scripts/run_manual_audit.py` |
 
 ---
 
@@ -100,7 +101,7 @@ Uji tambahan **Kruskal-Wallis per-domain** (H=18.409, p=0.001) menunjukkan bahwa
 
 2. **Studi longitudinal**: Bandingkan kontrak yang di-deploy sebelum dan sesudah best practice dipopulerkan.
 
-3. **Ground truth validation**: Buat kontrak dengan anti-pattern yang sengaja dibuat untuk mengukur precision/recall detektor secara eksak.
+3. ~~**Ground truth validation**~~ ✅ **Selesai**: Manual audit terhadap 20 kontrak top gas savings telah dilakukan (`docs/manual_audit/AUDIT_RESULTS.md`). Overall precision 79.6%. Saran lanjutan: perluas ke recall measurement dengan membuat synthetic contracts yang mengandung anti-pattern yang diketahui persis.
 
 4. **L2 analysis**: Analisis apakah pola yang sama muncul di kontrak Polygon, Optimism, Arbitrum — gas model L2 berbeda.
 

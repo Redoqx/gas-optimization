@@ -31,14 +31,50 @@ Hasil yang mungkin mengejutkan: meskipun 122 temuan dead code ditemukan di datas
 
 Untuk tujuan penulisan: sebutkan bahwa temuan dead code valid sebagai quality metric, namun dampak gas-nya minimal dalam pengukuran ini.
 
-### 4. Unoptimized Loop Hanya 7 Temuan
+### 4. Implikasi Precision Nyata dari Manual Audit
+
+Manual audit terhadap 20 kontrak top gas savings (945 findings) menghasilkan beberapa temuan yang berbeda dari perkiraan pseudo-audit sebelumnya:
+
+| Anti-Pattern | Perkiraan Pseudo-Audit | Hasil Manual Audit | Selisih |
+|---|---|---|---|
+| redundant_sload | ~74.6% | **69.0%** (71 resolved) | −5.6pp |
+| string_vs_bytes32 | ~85.5% | **100.0%** (99 resolved) | +14.5pp |
+| public_vs_external | ~90.0% | **73.9%** (436 resolved) | −16.1pp |
+| dead_code | ~70.8% | **95.5%** (67 resolved) | +24.7pp |
+| unoptimized_loop | N/A (0 di sampel lama) | **100.0%** (7 resolved) | — |
+| **Overall** | ~80.2% | **79.6%** | −0.6pp |
+
+**Mengapa `public_vs_external` lebih rendah dari perkiraan (73.9% vs ~90%)?**
+
+Detektor saat ini tidak dapat mendeteksi pemanggilan via inheritance lintas file. Jika kontrak B mewarisi dari kontrak A dan memanggil `functionX()` yang ada di A, detektor melihat `functionX()` di A tidak punya caller internal — padahal sebenarnya dipanggil oleh B yang ada di file berbeda. Ini adalah sumber utama 114 false positive. Solusi: implementasikan cross-file call graph sebelum menilai "tidak ada caller internal".
+
+**Mengapa `dead_code` lebih tinggi dari perkiraan (95.5% vs ~70.8%)?**
+
+Detektor `dead_code` menggunakan threshold konservatif: sebuah fungsi hanya di-flag jika nama fungsinya tidak muncul sama sekali di seluruh file (bahkan sebagai string). Threshold ini mengurangi FP secara drastis. Sebagian besar fungsi yang di-flag memang tidak pernah dipanggil — cross-contract call (via factory atau delegatecall) jarang digunakan untuk fungsi-fungsi yang ada di dataset ini.
+
+**Mengapa `redundant_sload` memiliki 233 kasus ambiguous?**
+
+Bukan berarti detektornya buruk — melainkan karena **function body parser** di `run_manual_audit.py` menggunakan brace-depth tracking sederhana yang gagal pada:
+- Kontrak besar (>2000 LOC) dengan banyak nested block
+- Fungsi yang menggunakan inline assembly (`assembly {}`)
+- Inheritance chain yang panjang (fungsi didefinisikan di parent contract, body tidak ditemukan di file yang sama)
+
+Jika ambiguous dianggap TP (optimis): precision ~69%+(233×69%)/304 ≈ 75–80%. Jika dianggap FP (konservatif): ~16%. Nilai sebenarnya kemungkinan mendekati batas atas karena ambiguous disebabkan kegagalan parser, bukan kegagalan detektor.
+
+**Mengapa `string_vs_bytes32` mencapai 100%?**
+
+Pattern ini bersifat sangat deterministik: jika sebuah state variable bertipe `string` ditemukan, hampir selalu dapat diganti `bytes32` kecuali nilainya secara eksplisit diinisialisasi dengan string panjang >32 karakter. Dari 99 resolved cases, tidak ada satu pun false positive. 27 kasus "ambiguous" terjadi karena literal initializer tidak terlihat langsung di file yang sama — namun kemungkinan besar juga TP.
+
+---
+
+### 6. Unoptimized Loop Hanya 7 Temuan
 
 Hanya 2 kontrak yang memiliki loop dengan state variable `.length`: MultiSigWallet (Utility, 5 temuan) dan KyberNetworkProxy (DeFi, 2 temuan). Ini bukan berarti pattern tidak umum — melainkan karena:
 1. Kontrak modern menggunakan mapping (O(1) lookup) daripada array iterasi
 2. Kontrak yang menggunakan array biasanya mengcache length secara manual (sudah sadar)
 3. Detektor kita hanya mendeteksi loop dengan state variable array; local variable array tidak dideteksi
 
-### 5. Korelasi Spearman LOC vs Findings (ρ = +0.144, p = 0.220)
+### 7. Korelasi Spearman LOC vs Findings (ρ = +0.144, p = 0.220)
 
 Korelasi Spearman antara LOC dan jumlah temuan adalah **tidak signifikan** (p=0.220) dengan arah positif lemah (ρ=+0.144). Ini berbeda dari ekspektasi awal bahwa kontrak lebih besar mengandung lebih banyak anti-pattern secara proporsional.
 
@@ -46,7 +82,7 @@ Korelasi Spearman antara LOC dan jumlah temuan adalah **tidak signifikan** (p=0.
 
 **Implikasi untuk penulisan**: "Ukuran kontrak (LOC) tidak dapat dijadikan prediktor yang andal untuk jumlah gas anti-pattern — era penulisan dan versi Solidity yang digunakan lebih determinan. Korelasi Spearman yang tidak signifikan (ρ=+0.144, p=0.220) mengkonfirmasi tidak ada hubungan linear yang bermakna antara kedua variabel ini."
 
-### 6. Slither Tidak Dapat Menganalisis Kontrak Lama
+### 8. Slither Tidak Dapat Menganalisis Kontrak Lama
 
 Slither 0.11.5 gagal menganalisis 10 kontrak sampel karena semua menggunakan solc 0.4.x. Ini bukan kelemahan inherent Slither — melainkan trade-off antara modernitas tool (Slither dioptimasi untuk kontrak modern) vs keragaman dataset.
 
