@@ -1,0 +1,5504 @@
+{
+  "summary": {
+    "redundant_sload": {
+      "TP": 49,
+      "FP": 22,
+      "?": 233
+    },
+    "string_vs_bytes32": {
+      "TP": 99,
+      "FP": 0,
+      "?": 27
+    },
+    "public_vs_external": {
+      "TP": 322,
+      "FP": 114,
+      "?": 3
+    },
+    "dead_code": {
+      "TP": 64,
+      "FP": 3,
+      "?": 2
+    },
+    "unoptimized_loop": {
+      "TP": 7,
+      "FP": 0,
+      "?": 0
+    }
+  },
+  "contracts": [
+    {
+      "rank": 1,
+      "nama": "DCLRegistrar",
+      "domain": "NFT",
+      "loc": 1570,
+      "estimated_savings": 117568,
+      "patterns": [
+        {
+          "pattern": "redundant_sload",
+          "findings": [
+            {
+              "subject": "`_owner`",
+              "verdict": "FP",
+              "reason": "assignment to `_owner` at body-line 104 between reads"
+            },
+            {
+              "subject": "`_owner` in `renounceOwnership()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_owner` in `_transferOwnership()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_ownedTokensCount` in `_transferFrom()`",
+              "verdict": "TP",
+              "reason": "2 reads, no assignment between them"
+            },
+            {
+              "subject": "`_tokenApprovals` in `_clearApproval()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_ownedTokens` in `_addTokenToOwnerEnumeration()`",
+              "verdict": "TP",
+              "reason": "2 reads, no assignment between them"
+            },
+            {
+              "subject": "`_allTokens` in `_addTokenToAllTokensEnumeration()`",
+              "verdict": "TP",
+              "reason": "2 reads, no assignment between them"
+            },
+            {
+              "subject": "`_ownedTokens` in `_removeTokenFromOwnerEnumeration()`",
+              "verdict": "FP",
+              "reason": "assignment to `_ownedTokens` at body-line 22 between reads"
+            },
+            {
+              "subject": "`_ownedTokensIndex` in `_removeTokenFromOwnerEnumeration()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_allTokens` in `_removeTokenFromAllTokensEnumeration()`",
+              "verdict": "FP",
+              "reason": "assignment to `_allTokens` at body-line 24 between reads"
+            },
+            {
+              "subject": "`_allTokensIndex` in `_removeTokenFromAllTokensEnumeration()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_tokenURIs` in `_burn()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`topdomain`",
+              "verdict": "FP",
+              "reason": "assignment to `topdomain` at body-line 2964 between reads"
+            },
+            {
+              "subject": "`domain`",
+              "verdict": "FP",
+              "reason": "assignment to `domain` at body-line 2972 between reads"
+            },
+            {
+              "subject": "`topdomainNameHash`",
+              "verdict": "FP",
+              "reason": "assignment to `topdomainNameHash` at body-line 2978 between reads"
+            },
+            {
+              "subject": "`_owner` in `reclaim()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`base` in `onERC721Received()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`baseURI` in `tokenURI()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_owner` in `transferDomainOwnership()`",
+              "verdict": "TP",
+              "reason": "3 reads, no assignment between them"
+            },
+            {
+              "subject": "`registry` in `setResolver()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`domainNameHash` in `setResolver()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`controllers` in `addController()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`controllers` in `removeController()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`registry` in `updateRegistry()`",
+              "verdict": "TP",
+              "reason": "3 reads, no assignment between them"
+            },
+            {
+              "subject": "`base` in `updateBase()`",
+              "verdict": "TP",
+              "reason": "3 reads, no assignment between them"
+            },
+            {
+              "subject": "`baseURI` in `updateBaseURI()`",
+              "verdict": "TP",
+              "reason": "2 reads, no assignment between them"
+            }
+          ],
+          "TP": 7,
+          "FP": 6,
+          "?": 13
+        },
+        {
+          "pattern": "string_vs_bytes32",
+          "findings": [
+            {
+              "subject": "`_name`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_symbol`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`topdomain`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`domain`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`baseURI`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`errorMessage`",
+              "verdict": "?",
+              "reason": "`errorMessage` not found as top-level state variable — may be inherited or local"
+            },
+            {
+              "subject": "`errorMessage`",
+              "verdict": "?",
+              "reason": "`errorMessage` not found as top-level state variable — may be inherited or local"
+            },
+            {
+              "subject": "`errorMessage`",
+              "verdict": "?",
+              "reason": "`errorMessage` not found as top-level state variable — may be inherited or local"
+            },
+            {
+              "subject": "`name`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`symbol`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`uri`",
+              "verdict": "?",
+              "reason": "`uri` not found as top-level state variable — may be inherited or local"
+            },
+            {
+              "subject": "`name`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`symbol`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_topdomain`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_domain`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_baseURI`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_subdomain`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_subdomain`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_subdomain`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_subdomain`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_subdomain`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_baseURI`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_str`",
+              "verdict": "?",
+              "reason": "`_str` not found as top-level state variable — may be inherited or local"
+            }
+          ],
+          "TP": 18,
+          "FP": 0,
+          "?": 5
+        },
+        {
+          "pattern": "public_vs_external",
+          "findings": [
+            {
+              "subject": "`owner()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [3285, 3637]"
+            },
+            {
+              "subject": "`renounceOwnership()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transferOwnership()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transferFrom()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [3417]"
+            },
+            {
+              "subject": "`approve()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`setApprovalForAll()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`onERC721Received()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1747]"
+            },
+            {
+              "subject": "`approve()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`setApprovalForAll()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transferFrom()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [3417]"
+            },
+            {
+              "subject": "`tokenOfOwnerByIndex()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`tokenByIndex()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`tokenOfOwnerByIndex()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`tokenByIndex()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`setOwner()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`setSubnodeOwner()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [3103, 3141, 3181]"
+            },
+            {
+              "subject": "`setResolver()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [3449]"
+            },
+            {
+              "subject": "`owner()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [3285, 3637]"
+            },
+            {
+              "subject": "`resolver()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [3435, 3469]"
+            },
+            {
+              "subject": "`setAddr()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`addr()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transferFrom()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [3417]"
+            },
+            {
+              "subject": "`transferFrom()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [3417]"
+            },
+            {
+              "subject": "`allowance()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`burn()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`reclaim()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [3235, 3395]"
+            },
+            {
+              "subject": "`reclaim()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [3235, 3395]"
+            },
+            {
+              "subject": "`onERC721Received()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1747]"
+            },
+            {
+              "subject": "`available()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`getOwnerOf()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`reclaimDomain()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transferDomainOwnership()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`setResolver()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [3449]"
+            },
+            {
+              "subject": "`forwardToResolver()`",
+              "verdict": "TP",
+              "reason": ""
+            }
+          ],
+          "TP": 20,
+          "FP": 14,
+          "?": 0
+        },
+        {
+          "pattern": "dead_code",
+          "findings": [
+            {
+              "subject": "`_msgData()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`add()`",
+              "verdict": "FP",
+              "reason": "called at lines [3701]"
+            },
+            {
+              "subject": "`mul()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`toPayable()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`sendValue()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`_tokensOfOwner()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`_setTokenURI()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            }
+          ],
+          "TP": 6,
+          "FP": 1,
+          "?": 0
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "nama": "KyberNetworkProxy",
+      "domain": "DeFi",
+      "loc": 484,
+      "estimated_savings": 113446,
+      "patterns": [
+        {
+          "pattern": "redundant_sload",
+          "findings": [
+            {
+              "subject": "`decimals` in `setDecimals()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`MAX_DECIMALS` in `calcDstQty()`",
+              "verdict": "TP",
+              "reason": "2 reads, no assignment between them"
+            },
+            {
+              "subject": "`PRECISION` in `calcDstQty()`",
+              "verdict": "TP",
+              "reason": "2 reads, no assignment between them"
+            },
+            {
+              "subject": "`MAX_DECIMALS` in `calcSrcQty()`",
+              "verdict": "TP",
+              "reason": "2 reads, no assignment between them"
+            },
+            {
+              "subject": "`PRECISION` in `calcSrcQty()`",
+              "verdict": "TP",
+              "reason": "2 reads, no assignment between them"
+            },
+            {
+              "subject": "`decimals` in `getDecimalsSafe()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`MAX_QTY` in `calcRateFromQty()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`MAX_DECIMALS` in `calcRateFromQty()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`PRECISION` in `calcRateFromQty()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`pendingAdmin` in `transferAdmin()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`admin` in `transferAdminQuickly()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`pendingAdmin` in `claimAdmin()`",
+              "verdict": "TP",
+              "reason": "2 reads, no assignment between them"
+            },
+            {
+              "subject": "`admin` in `claimAdmin()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`alerters` in `addAlerter()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`alertersGroup` in `addAlerter()`",
+              "verdict": "TP",
+              "reason": "2 reads, no assignment between them"
+            },
+            {
+              "subject": "`alerters` in `removeAlerter()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`alertersGroup` in `removeAlerter()`",
+              "verdict": "FP",
+              "reason": "assignment to `alertersGroup` at body-line 10 between reads"
+            },
+            {
+              "subject": "`operators` in `addOperator()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`operatorsGroup` in `addOperator()`",
+              "verdict": "TP",
+              "reason": "2 reads, no assignment between them"
+            },
+            {
+              "subject": "`operators` in `removeOperator()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`operatorsGroup` in `removeOperator()`",
+              "verdict": "FP",
+              "reason": "assignment to `operatorsGroup` at body-line 10 between reads"
+            },
+            {
+              "subject": "`ETH_TOKEN_ADDRESS` in `tradeWithHint()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`kyberNetworkContract` in `tradeWithHint()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`kyberNetworkContract` in `setKyberNetworkContract()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            }
+          ],
+          "TP": 7,
+          "FP": 2,
+          "?": 15
+        },
+        {
+          "pattern": "unoptimized_loop",
+          "findings": [
+            {
+              "subject": "`alertersGroup.length`",
+              "verdict": "TP",
+              "reason": "state array `.length` in for-loop at line 515"
+            },
+            {
+              "subject": "`operatorsGroup.length`",
+              "verdict": "TP",
+              "reason": "state array `.length` in for-loop at line 565"
+            }
+          ],
+          "TP": 2,
+          "FP": 0,
+          "?": 0
+        },
+        {
+          "pattern": "public_vs_external",
+          "findings": [
+            {
+              "subject": "`totalSupply()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`balanceOf()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [265]"
+            },
+            {
+              "subject": "`transfer()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [621, 641]"
+            },
+            {
+              "subject": "`transferFrom()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [971]"
+            },
+            {
+              "subject": "`approve()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`allowance()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`decimals()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [149, 167]"
+            },
+            {
+              "subject": "`maxGasPrice()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1087]"
+            },
+            {
+              "subject": "`getUserCapInWei()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1071]"
+            },
+            {
+              "subject": "`getUserCapInTokenWei()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1079]"
+            },
+            {
+              "subject": "`enabled()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1095]"
+            },
+            {
+              "subject": "`info()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1103]"
+            },
+            {
+              "subject": "`getExpectedRate()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1063]"
+            },
+            {
+              "subject": "`maxGasPrice()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1087]"
+            },
+            {
+              "subject": "`getUserCapInWei()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1071]"
+            },
+            {
+              "subject": "`getUserCapInTokenWei()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1079]"
+            },
+            {
+              "subject": "`enabled()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1095]"
+            },
+            {
+              "subject": "`info()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1103]"
+            },
+            {
+              "subject": "`getExpectedRate()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1063]"
+            },
+            {
+              "subject": "`swapTokenToToken()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`swapEtherToToken()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`swapTokenToEther()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transferAdmin()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transferAdminQuickly()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`claimAdmin()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`addAlerter()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`removeAlerter()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`addOperator()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`removeOperator()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`trade()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`swapTokenToToken()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`swapEtherToToken()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`swapTokenToEther()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`setKyberNetworkContract()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`getExpectedRate()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1063]"
+            },
+            {
+              "subject": "`getUserCapInWei()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1071]"
+            },
+            {
+              "subject": "`getUserCapInTokenWei()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1079]"
+            },
+            {
+              "subject": "`maxGasPrice()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1087]"
+            },
+            {
+              "subject": "`enabled()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1095]"
+            },
+            {
+              "subject": "`info()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1103]"
+            }
+          ],
+          "TP": 18,
+          "FP": 22,
+          "?": 0
+        },
+        {
+          "pattern": "dead_code",
+          "findings": [
+            {
+              "subject": "`calcDestAmount()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`calcSrcAmount()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            }
+          ],
+          "TP": 2,
+          "FP": 0,
+          "?": 0
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "nama": "WBTC",
+      "domain": "Token",
+      "loc": 564,
+      "estimated_savings": 89081,
+      "patterns": [
+        {
+          "pattern": "redundant_sload",
+          "findings": [
+            {
+              "subject": "`balances` in `transfer()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`balances` in `transferFrom()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`allowed` in `transferFrom()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`allowed` in `increaseApproval()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`allowed` in `decreaseApproval()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`owner` in `renounceOwnership()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`owner` in `_transferOwnership()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`totalSupply_` in `mint()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`balances` in `mint()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`balances` in `_burn()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`totalSupply_` in `_burn()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`owner` in `claimOwnership()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`pendingOwner` in `claimOwnership()`",
+              "verdict": "TP",
+              "reason": "2 reads, no assignment between them"
+            }
+          ],
+          "TP": 1,
+          "FP": 0,
+          "?": 12
+        },
+        {
+          "pattern": "string_vs_bytes32",
+          "findings": [
+            {
+              "subject": "`name`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`symbol`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_name`",
+              "verdict": "?",
+              "reason": "`_name` not found as top-level state variable — may be inherited or local"
+            },
+            {
+              "subject": "`_symbol`",
+              "verdict": "?",
+              "reason": "`_symbol` not found as top-level state variable — may be inherited or local"
+            }
+          ],
+          "TP": 2,
+          "FP": 0,
+          "?": 2
+        },
+        {
+          "pattern": "public_vs_external",
+          "findings": [
+            {
+              "subject": "`totalSupply()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`balanceOf()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1263]"
+            },
+            {
+              "subject": "`transfer()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1181]"
+            },
+            {
+              "subject": "`totalSupply()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transfer()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1181]"
+            },
+            {
+              "subject": "`balanceOf()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1263]"
+            },
+            {
+              "subject": "`allowance()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transferFrom()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1203]"
+            },
+            {
+              "subject": "`approve()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1223]"
+            },
+            {
+              "subject": "`transferFrom()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1203]"
+            },
+            {
+              "subject": "`approve()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1223]"
+            },
+            {
+              "subject": "`allowance()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`increaseApproval()`",
+              "verdict": "FP",
+              "reason": "called via super.increaseApproval() at lines [1047]"
+            },
+            {
+              "subject": "`decreaseApproval()`",
+              "verdict": "FP",
+              "reason": "called via super.decreaseApproval() at lines [1069]"
+            },
+            {
+              "subject": "`renounceOwnership()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transferOwnership()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`mint()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`finishMinting()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`burn()`",
+              "verdict": "FP",
+              "reason": "called via super.burn() at lines [1297]"
+            },
+            {
+              "subject": "`pause()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`unpause()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transfer()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1181]"
+            },
+            {
+              "subject": "`transferFrom()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1203]"
+            },
+            {
+              "subject": "`approve()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1223]"
+            },
+            {
+              "subject": "`increaseApproval()`",
+              "verdict": "FP",
+              "reason": "called via super.increaseApproval() at lines [1047]"
+            },
+            {
+              "subject": "`decreaseApproval()`",
+              "verdict": "FP",
+              "reason": "called via super.decreaseApproval() at lines [1069]"
+            },
+            {
+              "subject": "`transferOwnership()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`claimOwnership()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`burn()`",
+              "verdict": "FP",
+              "reason": "called via super.burn() at lines [1297]"
+            },
+            {
+              "subject": "`finishMinting()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`renounceOwnership()`",
+              "verdict": "TP",
+              "reason": ""
+            }
+          ],
+          "TP": 14,
+          "FP": 17,
+          "?": 0
+        },
+        {
+          "pattern": "dead_code",
+          "findings": [
+            {
+              "subject": "`mul()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`div()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`safeTransferFrom()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`safeApprove()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            }
+          ],
+          "TP": 4,
+          "FP": 0,
+          "?": 0
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "nama": "AdminUpgradeabilityProxy",
+      "domain": "Token",
+      "loc": 687,
+      "estimated_savings": 84576,
+      "patterns": [
+        {
+          "pattern": "redundant_sload",
+          "findings": [
+            {
+              "subject": "`initialized` in `initialize()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`frozen` in `transfer()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`frozen` in `transferFrom()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`allowed` in `transferFrom()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`frozen` in `approve()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`balances` in `_transfer()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`feeRecipient` in `_transfer()`",
+              "verdict": "TP",
+              "reason": "3 reads, no assignment between them"
+            },
+            {
+              "subject": "`proposedOwner` in `proposeOwner()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`proposedOwner` in `disregardProposeOwner()`",
+              "verdict": "TP",
+              "reason": "3 reads, no assignment between them"
+            },
+            {
+              "subject": "`proposedOwner` in `claimOwnership()`",
+              "verdict": "TP",
+              "reason": "2 reads, no assignment between them"
+            },
+            {
+              "subject": "`owner` in `claimOwnership()`",
+              "verdict": "FP",
+              "reason": "assignment to `owner` at body-line 6 between reads"
+            },
+            {
+              "subject": "`balances` in `reclaimPAXG()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`owner` in `reclaimPAXG()`",
+              "verdict": "TP",
+              "reason": "2 reads, no assignment between them"
+            },
+            {
+              "subject": "`paused` in `pause()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`paused` in `unpause()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`assetProtectionRole` in `setAssetProtectionRole()`",
+              "verdict": "TP",
+              "reason": "2 reads, no assignment between them"
+            },
+            {
+              "subject": "`frozen` in `freeze()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`frozen` in `unfreeze()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`balances` in `wipeFrozenAddress()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`totalSupply_` in `wipeFrozenAddress()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`supplyController` in `setSupplyController()`",
+              "verdict": "TP",
+              "reason": "2 reads, no assignment between them"
+            },
+            {
+              "subject": "`totalSupply_` in `increaseSupply()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`balances` in `increaseSupply()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`supplyController` in `increaseSupply()`",
+              "verdict": "TP",
+              "reason": "3 reads, no assignment between them"
+            },
+            {
+              "subject": "`balances` in `decreaseSupply()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`supplyController` in `decreaseSupply()`",
+              "verdict": "TP",
+              "reason": "4 reads, no assignment between them"
+            },
+            {
+              "subject": "`totalSupply_` in `decreaseSupply()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`frozen` in `_betaDelegatedTransfer()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`balances` in `_betaDelegatedTransfer()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`nextSeqs` in `_betaDelegatedTransfer()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`betaDelegateWhitelister` in `setBetaDelegateWhitelister()`",
+              "verdict": "FP",
+              "reason": "assignment to `betaDelegateWhitelister` at body-line 4 between reads"
+            },
+            {
+              "subject": "`betaDelegateWhitelist` in `whitelistBetaDelegate()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`betaDelegateWhitelist` in `unwhitelistBetaDelegate()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`feeController` in `setFeeController()`",
+              "verdict": "FP",
+              "reason": "assignment to `feeController` at body-line 8 between reads"
+            },
+            {
+              "subject": "`feeRecipient` in `setFeeRecipient()`",
+              "verdict": "FP",
+              "reason": "assignment to `feeRecipient` at body-line 6 between reads"
+            },
+            {
+              "subject": "`feeRate` in `setFeeRate()`",
+              "verdict": "FP",
+              "reason": "assignment to `feeRate` at body-line 6 between reads"
+            },
+            {
+              "subject": "`feeRate` in `getFeeFor()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            }
+          ],
+          "TP": 8,
+          "FP": 5,
+          "?": 24
+        },
+        {
+          "pattern": "string_vs_bytes32",
+          "findings": [
+            {
+              "subject": "`name`",
+              "verdict": "TP",
+              "reason": "value=\"Paxos Gold\" (10 chars ≤ 32)"
+            },
+            {
+              "subject": "`symbol`",
+              "verdict": "TP",
+              "reason": "value=\"PAXG\" (4 chars ≤ 32)"
+            },
+            {
+              "subject": "`EIP191_HEADER`",
+              "verdict": "TP",
+              "reason": "value=\"\\x19\\x01\" (8 chars ≤ 32)"
+            }
+          ],
+          "TP": 3,
+          "FP": 0,
+          "?": 0
+        },
+        {
+          "pattern": "public_vs_external",
+          "findings": [
+            {
+              "subject": "`totalSupply()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transfer()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`balanceOf()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transferFrom()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`approve()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`allowance()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`proposeOwner()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`disregardProposeOwner()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`claimOwnership()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`unpause()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`setAssetProtectionRole()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`freeze()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`unfreeze()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`wipeFrozenAddress()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`isFrozen()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`setSupplyController()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`increaseSupply()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`decreaseSupply()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`nextSeqOf()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`betaDelegatedTransfer()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`betaDelegatedTransferBatch()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`isWhitelistedBetaDelegate()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`setBetaDelegateWhitelister()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`whitelistBetaDelegate()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`unwhitelistBetaDelegate()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`setFeeController()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`setFeeRecipient()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`setFeeRate()`",
+              "verdict": "TP",
+              "reason": ""
+            }
+          ],
+          "TP": 28,
+          "FP": 0,
+          "?": 0
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "nama": "AdminUpgradeabilityProxy",
+      "domain": "NFT",
+      "loc": 1515,
+      "estimated_savings": 83925,
+      "patterns": [
+        {
+          "pattern": "string_vs_bytes32",
+          "findings": [
+            {
+              "subject": "`contractName`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`migrationId`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`contractName`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`migrationId`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_name`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_symbol`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_uri`",
+              "verdict": "?",
+              "reason": "`_uri` not found as top-level state variable — may be inherited or local"
+            },
+            {
+              "subject": "`metadata`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`data`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`metadata`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`metadata`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_name`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_symbol`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`data`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`data`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`metadata`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`metadata`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`data`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            }
+          ],
+          "TP": 17,
+          "FP": 0,
+          "?": 1
+        },
+        {
+          "pattern": "public_vs_external",
+          "findings": [
+            {
+              "subject": "`approve()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`setApprovalForAll()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`tokenOfOwnerByIndex()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`tokenByIndex()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`tokenURI()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`onERC721Received()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [597]"
+            },
+            {
+              "subject": "`approve()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`setApprovalForAll()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`initialize()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1350, 1351]"
+            },
+            {
+              "subject": "`initialize()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1350, 1351]"
+            },
+            {
+              "subject": "`tokenURI()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`tokenOfOwnerByIndex()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`tokenByIndex()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`initialize()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1350, 1351]"
+            },
+            {
+              "subject": "`transferOwnership()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`ping()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1187]"
+            },
+            {
+              "subject": "`updateOperator()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1632]"
+            },
+            {
+              "subject": "`setManyUpdateOperator()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1337]"
+            },
+            {
+              "subject": "`setLandUpdateOperator()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`setManyLandUpdateOperator()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`initialize()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1350, 1351]"
+            },
+            {
+              "subject": "`onERC721Received()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [597]"
+            },
+            {
+              "subject": "`verifyFingerprint()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1050]"
+            },
+            {
+              "subject": "`updateLandData()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1661]"
+            },
+            {
+              "subject": "`updateManyLandData()`",
+              "verdict": "TP",
+              "reason": ""
+            }
+          ],
+          "TP": 14,
+          "FP": 11,
+          "?": 0
+        },
+        {
+          "pattern": "dead_code",
+          "findings": [
+            {
+              "subject": "`div()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`_setTokenURI()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            }
+          ],
+          "TP": 2,
+          "FP": 0,
+          "?": 0
+        }
+      ]
+    },
+    {
+      "rank": 6,
+      "nama": "Parcel",
+      "domain": "NFT",
+      "loc": 733,
+      "estimated_savings": 80054,
+      "patterns": [
+        {
+          "pattern": "redundant_sload",
+          "findings": [
+            {
+              "subject": "`owner` in `transferOwnership()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`owner` in `ownerOf()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`owner` in `approve()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`owner` in `isApprovedOrOwner()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`tokenApprovals` in `clearApproval()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`tokenOwner` in `addTokenTo()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`ownedTokensCount` in `addTokenTo()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`ownedTokensCount` in `removeTokenFrom()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`ownedTokens` in `addTokenTo()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`ownedTokensIndex` in `removeTokenFrom()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`ownedTokens` in `removeTokenFrom()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`allTokens` in `_mint()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`tokenURIs` in `_burn()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`allTokensIndex` in `_burn()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`allTokens` in `_burn()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`creator` in `takeOwnership()`",
+              "verdict": "TP",
+              "reason": "3 reads, no assignment between them"
+            },
+            {
+              "subject": "`owner` in `takeOwnership()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`contentURIs` in `burn()`",
+              "verdict": "TP",
+              "reason": "2 reads, no assignment between them"
+            },
+            {
+              "subject": "`tokenOwner` in `buy()`",
+              "verdict": "TP",
+              "reason": "2 reads, no assignment between them"
+            },
+            {
+              "subject": "`tokenPrice` in `buy()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`boundingBoxes` in `getBoundingBox()`",
+              "verdict": "TP",
+              "reason": "6 reads, no assignment between them"
+            }
+          ],
+          "TP": 4,
+          "FP": 0,
+          "?": 17
+        },
+        {
+          "pattern": "string_vs_bytes32",
+          "findings": [
+            {
+              "subject": "`name_`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`symbol_`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_name`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_symbol`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_uri`",
+              "verdict": "?",
+              "reason": "`_uri` not found as top-level state variable — may be inherited or local"
+            },
+            {
+              "subject": "`inStr`",
+              "verdict": "?",
+              "reason": "`inStr` not found as top-level state variable — may be inherited or local"
+            },
+            {
+              "subject": "`_uri`",
+              "verdict": "?",
+              "reason": "`_uri` not found as top-level state variable — may be inherited or local"
+            }
+          ],
+          "TP": 4,
+          "FP": 0,
+          "?": 3
+        },
+        {
+          "pattern": "public_vs_external",
+          "findings": [
+            {
+              "subject": "`transferOwnership()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`approve()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`setApprovalForAll()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`tokenOfOwnerByIndex()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`tokenByIndex()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`name()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`symbol()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`tokenURI()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`onERC721Received()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [997]"
+            },
+            {
+              "subject": "`approve()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`setApprovalForAll()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`name()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`symbol()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`tokenURI()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`tokenOfOwnerByIndex()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`tokenByIndex()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`takeOwnership()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`mint()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`tokenURI()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`burn()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`setPrice()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`getPrice()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`buy()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`getBoundingBox()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`setContentURI()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`contentURI()`",
+              "verdict": "TP",
+              "reason": ""
+            }
+          ],
+          "TP": 25,
+          "FP": 1,
+          "?": 0
+        },
+        {
+          "pattern": "dead_code",
+          "findings": [
+            {
+              "subject": "`mul()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`div()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`_setTokenURI()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            }
+          ],
+          "TP": 3,
+          "FP": 0,
+          "?": 0
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "nama": "TetherToken",
+      "domain": "Token",
+      "loc": 377,
+      "estimated_savings": 78947,
+      "patterns": [
+        {
+          "pattern": "redundant_sload",
+          "findings": [
+            {
+              "subject": "`maximumFee` in `transfer()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`balances` in `transfer()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`owner` in `transfer()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`allowed` in `transferFrom()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`maximumFee` in `transferFrom()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`balances` in `transferFrom()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`owner` in `transferFrom()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`allowed` in `approve()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_totalSupply` in `issue()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`balances` in `issue()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`owner` in `issue()`",
+              "verdict": "TP",
+              "reason": "2 reads, no assignment between them"
+            },
+            {
+              "subject": "`_totalSupply` in `redeem()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`balances` in `redeem()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`owner` in `redeem()`",
+              "verdict": "TP",
+              "reason": "2 reads, no assignment between them"
+            },
+            {
+              "subject": "`basisPointsRate` in `setParams()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`maximumFee` in `setParams()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            }
+          ],
+          "TP": 2,
+          "FP": 0,
+          "?": 14
+        },
+        {
+          "pattern": "string_vs_bytes32",
+          "findings": [
+            {
+              "subject": "`name`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`symbol`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_name`",
+              "verdict": "?",
+              "reason": "`_name` not found as top-level state variable — may be inherited or local"
+            },
+            {
+              "subject": "`_symbol`",
+              "verdict": "?",
+              "reason": "`_symbol` not found as top-level state variable — may be inherited or local"
+            }
+          ],
+          "TP": 2,
+          "FP": 0,
+          "?": 2
+        },
+        {
+          "pattern": "public_vs_external",
+          "findings": [
+            {
+              "subject": "`transferOwnership()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`totalSupply()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [783]"
+            },
+            {
+              "subject": "`transfer()`",
+              "verdict": "FP",
+              "reason": "called via super.transfer() at lines [681]"
+            },
+            {
+              "subject": "`allowance()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [751]"
+            },
+            {
+              "subject": "`transferFrom()`",
+              "verdict": "FP",
+              "reason": "called via super.transferFrom() at lines [701]"
+            },
+            {
+              "subject": "`approve()`",
+              "verdict": "FP",
+              "reason": "called via super.approve() at lines [737]"
+            },
+            {
+              "subject": "`transfer()`",
+              "verdict": "FP",
+              "reason": "called via super.transfer() at lines [681]"
+            },
+            {
+              "subject": "`transferFrom()`",
+              "verdict": "FP",
+              "reason": "called via super.transferFrom() at lines [701]"
+            },
+            {
+              "subject": "`approve()`",
+              "verdict": "FP",
+              "reason": "called via super.approve() at lines [737]"
+            },
+            {
+              "subject": "`allowance()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [751]"
+            },
+            {
+              "subject": "`pause()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`unpause()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`addBlackList()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`removeBlackList()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`destroyBlackFunds()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transferByLegacy()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [677]"
+            },
+            {
+              "subject": "`transferFromByLegacy()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [697]"
+            },
+            {
+              "subject": "`approveByLegacy()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [733]"
+            },
+            {
+              "subject": "`transfer()`",
+              "verdict": "FP",
+              "reason": "called via super.transfer() at lines [681]"
+            },
+            {
+              "subject": "`transferFrom()`",
+              "verdict": "FP",
+              "reason": "called via super.transferFrom() at lines [701]"
+            },
+            {
+              "subject": "`approve()`",
+              "verdict": "FP",
+              "reason": "called via super.approve() at lines [737]"
+            },
+            {
+              "subject": "`allowance()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [751]"
+            },
+            {
+              "subject": "`deprecate()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`totalSupply()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [783]"
+            },
+            {
+              "subject": "`issue()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`redeem()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`setParams()`",
+              "verdict": "TP",
+              "reason": ""
+            }
+          ],
+          "TP": 10,
+          "FP": 17,
+          "?": 0
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "nama": "AdminUpgradeabilityProxy",
+      "domain": "Token",
+      "loc": 581,
+      "estimated_savings": 75813,
+      "patterns": [
+        {
+          "pattern": "redundant_sload",
+          "findings": [
+            {
+              "subject": "`initialized` in `initialize()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`frozen` in `transfer()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`balances` in `transfer()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`frozen` in `transferFrom()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`balances` in `transferFrom()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`allowed` in `transferFrom()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`frozen` in `approve()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`proposedOwner` in `proposeOwner()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`proposedOwner` in `disregardProposeOwner()`",
+              "verdict": "TP",
+              "reason": "3 reads, no assignment between them"
+            },
+            {
+              "subject": "`proposedOwner` in `claimOwnership()`",
+              "verdict": "TP",
+              "reason": "2 reads, no assignment between them"
+            },
+            {
+              "subject": "`owner` in `claimOwnership()`",
+              "verdict": "FP",
+              "reason": "assignment to `owner` at body-line 6 between reads"
+            },
+            {
+              "subject": "`balances` in `reclaimBUSD()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`owner` in `reclaimBUSD()`",
+              "verdict": "TP",
+              "reason": "2 reads, no assignment between them"
+            },
+            {
+              "subject": "`paused` in `pause()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`paused` in `unpause()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`assetProtectionRole` in `setAssetProtectionRole()`",
+              "verdict": "TP",
+              "reason": "2 reads, no assignment between them"
+            },
+            {
+              "subject": "`frozen` in `freeze()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`frozen` in `unfreeze()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`balances` in `wipeFrozenAddress()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`totalSupply_` in `wipeFrozenAddress()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`supplyController` in `setSupplyController()`",
+              "verdict": "TP",
+              "reason": "2 reads, no assignment between them"
+            },
+            {
+              "subject": "`totalSupply_` in `increaseSupply()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`balances` in `increaseSupply()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`supplyController` in `increaseSupply()`",
+              "verdict": "TP",
+              "reason": "3 reads, no assignment between them"
+            },
+            {
+              "subject": "`balances` in `decreaseSupply()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`supplyController` in `decreaseSupply()`",
+              "verdict": "TP",
+              "reason": "4 reads, no assignment between them"
+            },
+            {
+              "subject": "`totalSupply_` in `decreaseSupply()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`frozen` in `_betaDelegatedTransfer()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`balances` in `_betaDelegatedTransfer()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`nextSeqs` in `_betaDelegatedTransfer()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`betaDelegateWhitelister` in `setBetaDelegateWhitelister()`",
+              "verdict": "FP",
+              "reason": "assignment to `betaDelegateWhitelister` at body-line 4 between reads"
+            },
+            {
+              "subject": "`betaDelegateWhitelist` in `whitelistBetaDelegate()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`betaDelegateWhitelist` in `unwhitelistBetaDelegate()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            }
+          ],
+          "TP": 7,
+          "FP": 2,
+          "?": 24
+        },
+        {
+          "pattern": "string_vs_bytes32",
+          "findings": [
+            {
+              "subject": "`name`",
+              "verdict": "TP",
+              "reason": "value=\"BUSD\" (4 chars ≤ 32)"
+            },
+            {
+              "subject": "`symbol`",
+              "verdict": "TP",
+              "reason": "value=\"BUSD\" (4 chars ≤ 32)"
+            },
+            {
+              "subject": "`EIP191_HEADER`",
+              "verdict": "TP",
+              "reason": "value=\"\\x19\\x01\" (8 chars ≤ 32)"
+            }
+          ],
+          "TP": 3,
+          "FP": 0,
+          "?": 0
+        },
+        {
+          "pattern": "public_vs_external",
+          "findings": [
+            {
+              "subject": "`totalSupply()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transfer()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`balanceOf()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transferFrom()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`approve()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`allowance()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`proposeOwner()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`disregardProposeOwner()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`claimOwnership()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`unpause()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`setAssetProtectionRole()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`freeze()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`unfreeze()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`wipeFrozenAddress()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`isFrozen()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`setSupplyController()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`increaseSupply()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`decreaseSupply()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`nextSeqOf()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`betaDelegatedTransfer()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`betaDelegatedTransferBatch()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`isWhitelistedBetaDelegate()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`setBetaDelegateWhitelister()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`whitelistBetaDelegate()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`unwhitelistBetaDelegate()`",
+              "verdict": "TP",
+              "reason": ""
+            }
+          ],
+          "TP": 25,
+          "FP": 0,
+          "?": 0
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "nama": "WrappedPunk",
+      "domain": "NFT",
+      "loc": 1376,
+      "estimated_savings": 70910,
+      "patterns": [
+        {
+          "pattern": "redundant_sload",
+          "findings": [
+            {
+              "subject": "`_owner` in `renounceOwnership()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_owner` in `transferOwnership()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_ownedTokensCount` in `_transferFrom()`",
+              "verdict": "TP",
+              "reason": "2 reads, no assignment between them"
+            },
+            {
+              "subject": "`_tokenApprovals` in `_clearApproval()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_ownedTokens` in `_addTokenToOwnerEnumeration()`",
+              "verdict": "TP",
+              "reason": "2 reads, no assignment between them"
+            },
+            {
+              "subject": "`_allTokens` in `_addTokenToAllTokensEnumeration()`",
+              "verdict": "TP",
+              "reason": "2 reads, no assignment between them"
+            },
+            {
+              "subject": "`_ownedTokens` in `_removeTokenFromOwnerEnumeration()`",
+              "verdict": "FP",
+              "reason": "assignment to `_ownedTokens` at body-line 22 between reads"
+            },
+            {
+              "subject": "`_ownedTokensIndex` in `_removeTokenFromOwnerEnumeration()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_allTokens` in `_removeTokenFromAllTokensEnumeration()`",
+              "verdict": "FP",
+              "reason": "assignment to `_allTokens` at body-line 24 between reads"
+            },
+            {
+              "subject": "`_allTokensIndex` in `_removeTokenFromAllTokensEnumeration()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_baseURI` in `tokenURI()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_tokenURIs` in `_burn()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_owner` in `transfer()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_proxies` in `registerProxy()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            }
+          ],
+          "TP": 3,
+          "FP": 2,
+          "?": 9
+        },
+        {
+          "pattern": "string_vs_bytes32",
+          "findings": [
+            {
+              "subject": "`_name`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_symbol`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_baseURI`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`name`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`symbol`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_tokenURI`",
+              "verdict": "?",
+              "reason": "`_tokenURI` not found as top-level state variable — may be inherited or local"
+            },
+            {
+              "subject": "`baseURI`",
+              "verdict": "?",
+              "reason": "`baseURI` not found as top-level state variable — may be inherited or local"
+            },
+            {
+              "subject": "`name`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`symbol`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`baseUri`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            }
+          ],
+          "TP": 8,
+          "FP": 0,
+          "?": 2
+        },
+        {
+          "pattern": "public_vs_external",
+          "findings": [
+            {
+              "subject": "`owner()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`renounceOwnership()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transferOwnership()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`paused()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`supportsInterface()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`approve()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`setApprovalForAll()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transferFrom()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`tokenOfOwnerByIndex()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`tokenByIndex()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`name()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`symbol()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`tokenURI()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`baseURI()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`punkContract()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`setBaseURI()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`pause()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`unpause()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`registerProxy()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`proxyInfo()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`mint()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`burn()`",
+              "verdict": "TP",
+              "reason": ""
+            }
+          ],
+          "TP": 22,
+          "FP": 0,
+          "?": 0
+        },
+        {
+          "pattern": "dead_code",
+          "findings": [
+            {
+              "subject": "`_msgData()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`add()`",
+              "verdict": "FP",
+              "reason": "called at lines [2065]"
+            },
+            {
+              "subject": "`mul()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`div()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`mod()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`toPayable()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`_tokensOfOwner()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`_setTokenURI()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            }
+          ],
+          "TP": 7,
+          "FP": 1,
+          "?": 0
+        }
+      ]
+    },
+    {
+      "rank": 10,
+      "nama": "SuperRareV2",
+      "domain": "NFT",
+      "loc": 999,
+      "estimated_savings": 67836,
+      "patterns": [
+        {
+          "pattern": "redundant_sload",
+          "findings": [
+            {
+              "subject": "`_tokenOwner` in `_addTokenTo()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_ownedTokensCount` in `_addTokenTo()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_ownedTokensCount` in `_removeTokenFrom()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_tokenApprovals` in `_clearApproval()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_ownedTokens` in `_addTokenTo()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_ownedTokensIndex` in `_removeTokenFrom()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_ownedTokens` in `_removeTokenFrom()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_allTokens` in `_mint()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_allTokensIndex` in `_burn()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_allTokens` in `_burn()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_tokenURIs` in `_burn()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_owner`",
+              "verdict": "FP",
+              "reason": "assignment to `_owner` at body-line 1746 between reads"
+            },
+            {
+              "subject": "`_owner` in `renounceOwnership()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_owner` in `_transferOwnership()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`oldSuperRare`",
+              "verdict": "FP",
+              "reason": "assignment to `oldSuperRare` at body-line 2064 between reads"
+            },
+            {
+              "subject": "`idCounter` in `_createToken()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            }
+          ],
+          "TP": 0,
+          "FP": 2,
+          "?": 14
+        },
+        {
+          "pattern": "string_vs_bytes32",
+          "findings": [
+            {
+              "subject": "`_name`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_symbol`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`name`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`symbol`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`uri`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`name`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`symbol`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_name`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_symbol`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_uri`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_uri`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_uri`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            }
+          ],
+          "TP": 12,
+          "FP": 0,
+          "?": 0
+        },
+        {
+          "pattern": "public_vs_external",
+          "findings": [
+            {
+              "subject": "`creatorOfToken()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`onERC721Received()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [1219]"
+            },
+            {
+              "subject": "`approve()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`setApprovalForAll()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`tokenOfOwnerByIndex()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`tokenByIndex()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`approve()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`setApprovalForAll()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`tokenOfOwnerByIndex()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`tokenByIndex()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`owner()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`renounceOwnership()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transferOwnership()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`enableWhitelist()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`addToWhitelist()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`removeFromWhitelist()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`initWhitelist()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`addNewToken()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`deleteToken()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`updateTokenMetadata()`",
+              "verdict": "TP",
+              "reason": ""
+            }
+          ],
+          "TP": 19,
+          "FP": 1,
+          "?": 0
+        },
+        {
+          "pattern": "dead_code",
+          "findings": [
+            {
+              "subject": "`mul()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`div()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`mod()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            }
+          ],
+          "TP": 3,
+          "FP": 0,
+          "?": 0
+        }
+      ]
+    },
+    {
+      "rank": 11,
+      "nama": "BalancerGovernanceToken",
+      "domain": "Token",
+      "loc": 1280,
+      "estimated_savings": 59326,
+      "patterns": [
+        {
+          "pattern": "redundant_sload",
+          "findings": [
+            {
+              "subject": "`_balances` in `_transfer()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_totalSupply` in `_mint()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_balances` in `_mint()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_balances` in `_burn()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_totalSupply` in `_burn()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_currentSnapshotId` in `_snapshot()`",
+              "verdict": "TP",
+              "reason": "2 reads, no assignment between them"
+            }
+          ],
+          "TP": 1,
+          "FP": 0,
+          "?": 5
+        },
+        {
+          "pattern": "string_vs_bytes32",
+          "findings": [
+            {
+              "subject": "`_name`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_symbol`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`version`",
+              "verdict": "TP",
+              "reason": "value=\"1\" (1 chars ≤ 32)"
+            },
+            {
+              "subject": "`name`",
+              "verdict": "?",
+              "reason": "`name` not found as top-level state variable — may be inherited or local"
+            },
+            {
+              "subject": "`symbol`",
+              "verdict": "?",
+              "reason": "`symbol` not found as top-level state variable — may be inherited or local"
+            }
+          ],
+          "TP": 3,
+          "FP": 0,
+          "?": 2
+        },
+        {
+          "pattern": "public_vs_external",
+          "findings": [
+            {
+              "subject": "`getRoleMemberCount()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`getRoleMember()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`getRoleAdmin()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`grantRole()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`revokeRole()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`renounceRole()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`name()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`symbol()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`decimals()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transfer()`",
+              "verdict": "?",
+              "reason": "has override keyword (line 2029) — may need public for interface"
+            },
+            {
+              "subject": "`approve()`",
+              "verdict": "?",
+              "reason": "has override keyword (line 2067) — may need public for interface"
+            },
+            {
+              "subject": "`transferFrom()`",
+              "verdict": "?",
+              "reason": "has override keyword (line 2101) — may need public for interface"
+            },
+            {
+              "subject": "`increaseAllowance()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`decreaseAllowance()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`balanceOfAt()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`totalSupplyAt()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`mint()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`burn()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`burnFrom()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`snapshot()`",
+              "verdict": "TP",
+              "reason": ""
+            }
+          ],
+          "TP": 17,
+          "FP": 0,
+          "?": 3
+        },
+        {
+          "pattern": "dead_code",
+          "findings": [
+            {
+              "subject": "`isContract()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`sendValue()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`_msgData()`",
+              "verdict": "?",
+              "reason": "virtual/override function — may be called from child contract"
+            },
+            {
+              "subject": "`_setRoleAdmin()`",
+              "verdict": "?",
+              "reason": "virtual/override function — may be called from child contract"
+            },
+            {
+              "subject": "`mul()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`max()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`min()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`decrement()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`_setupDecimals()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`_valueAt()`",
+              "verdict": "FP",
+              "reason": "called at lines [2597, 2615]"
+            }
+          ],
+          "TP": 7,
+          "FP": 1,
+          "?": 2
+        }
+      ]
+    },
+    {
+      "rank": 12,
+      "nama": "WyvernProxyRegistry",
+      "domain": "Utility",
+      "loc": 383,
+      "estimated_savings": 58757,
+      "patterns": [
+        {
+          "pattern": "redundant_sload",
+          "findings": [
+            {
+              "subject": "`owner` in `transferOwnership()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`owner` in `renounceOwnership()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`pending` in `startGrantAuthentication()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`contracts` in `endGrantAuthentication()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`pending` in `endGrantAuthentication()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`proxies` in `registerProxy()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`initialAddressSet` in `grantInitialAuthentication()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`initialized` in `initialize()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_implementation` in `_upgradeTo()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            }
+          ],
+          "TP": 0,
+          "FP": 0,
+          "?": 9
+        },
+        {
+          "pattern": "string_vs_bytes32",
+          "findings": [
+            {
+              "subject": "`name`",
+              "verdict": "TP",
+              "reason": "value=\"Project Wyvern Proxy Registry\" (29 chars ≤ 32)"
+            }
+          ],
+          "TP": 1,
+          "FP": 0,
+          "?": 0
+        },
+        {
+          "pattern": "public_vs_external",
+          "findings": [
+            {
+              "subject": "`transferOwnership()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`renounceOwnership()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`totalSupply()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`balanceOf()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transfer()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`allowance()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transferFrom()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [167]"
+            },
+            {
+              "subject": "`approve()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`receiveApproval()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`startGrantAuthentication()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`endGrantAuthentication()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`revokeAuthentication()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`registerProxy()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`grantInitialAuthentication()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`proxyType()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`initialize()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [339]"
+            },
+            {
+              "subject": "`setRevoke()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`proxyAssert()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`proxyType()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transferProxyOwnership()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`upgradeToAndCall()`",
+              "verdict": "TP",
+              "reason": ""
+            }
+          ],
+          "TP": 19,
+          "FP": 2,
+          "?": 0
+        }
+      ]
+    },
+    {
+      "rank": 13,
+      "nama": "DSToken",
+      "domain": "Governance",
+      "loc": 371,
+      "estimated_savings": 58737,
+      "patterns": [
+        {
+          "pattern": "redundant_sload",
+          "findings": [
+            {
+              "subject": "`owner` in `setOwner()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`authority` in `setAuthority()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`authority` in `isAuthorized()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`WAD` in `wmul()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`RAY` in `rmul()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_approvals` in `transferFrom()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_balances` in `transferFrom()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_approvals` in `transferFrom()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_balances` in `transferFrom()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_balances` in `mint()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_supply` in `mint()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_approvals` in `burn()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_balances` in `burn()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_supply` in `burn()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            }
+          ],
+          "TP": 0,
+          "FP": 0,
+          "?": 14
+        },
+        {
+          "pattern": "public_vs_external",
+          "findings": [
+            {
+              "subject": "`canCall()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [141]"
+            },
+            {
+              "subject": "`setOwner()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`setAuthority()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`stop()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`start()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`totalSupply()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`balanceOf()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`allowance()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transfer()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`approve()`",
+              "verdict": "FP",
+              "reason": "called via super.approve() at lines [825, 833]"
+            },
+            {
+              "subject": "`totalSupply()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`balanceOf()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`allowance()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transfer()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`approve()`",
+              "verdict": "FP",
+              "reason": "called via super.approve() at lines [825, 833]"
+            },
+            {
+              "subject": "`approve()`",
+              "verdict": "FP",
+              "reason": "called via super.approve() at lines [825, 833]"
+            },
+            {
+              "subject": "`approve()`",
+              "verdict": "FP",
+              "reason": "called via super.approve() at lines [825, 833]"
+            },
+            {
+              "subject": "`push()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`pull()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`move()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`setName()`",
+              "verdict": "TP",
+              "reason": ""
+            }
+          ],
+          "TP": 16,
+          "FP": 5,
+          "?": 0
+        },
+        {
+          "pattern": "dead_code",
+          "findings": [
+            {
+              "subject": "`min()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`max()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`imin()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`imax()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`wmul()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`wdiv()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`rdiv()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`rpow()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            }
+          ],
+          "TP": 8,
+          "FP": 0,
+          "?": 0
+        }
+      ]
+    },
+    {
+      "rank": 14,
+      "nama": "AvastarTeleporter",
+      "domain": "NFT",
+      "loc": 2171,
+      "estimated_savings": 54335,
+      "patterns": [
+        {
+          "pattern": "redundant_sload",
+          "findings": [
+            {
+              "subject": "`minters` in `addMinter()`",
+              "verdict": "TP",
+              "reason": "2 reads, no assignment between them"
+            },
+            {
+              "subject": "`owners` in `addOwner()`",
+              "verdict": "TP",
+              "reason": "2 reads, no assignment between them"
+            },
+            {
+              "subject": "`admins` in `addSysAdmin()`",
+              "verdict": "TP",
+              "reason": "2 reads, no assignment between them"
+            },
+            {
+              "subject": "`admins` in `stripRoles()`",
+              "verdict": "TP",
+              "reason": "2 reads, no assignment between them"
+            },
+            {
+              "subject": "`minters` in `stripRoles()`",
+              "verdict": "TP",
+              "reason": "2 reads, no assignment between them"
+            },
+            {
+              "subject": "`owners` in `stripRoles()`",
+              "verdict": "TP",
+              "reason": "2 reads, no assignment between them"
+            },
+            {
+              "subject": "`_ownedTokensCount` in `_transferFrom()`",
+              "verdict": "TP",
+              "reason": "2 reads, no assignment between them"
+            },
+            {
+              "subject": "`_tokenApprovals` in `_clearApproval()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_ownedTokens` in `_addTokenToOwnerEnumeration()`",
+              "verdict": "TP",
+              "reason": "2 reads, no assignment between them"
+            },
+            {
+              "subject": "`_allTokens` in `_addTokenToAllTokensEnumeration()`",
+              "verdict": "TP",
+              "reason": "2 reads, no assignment between them"
+            },
+            {
+              "subject": "`_ownedTokens` in `_removeTokenFromOwnerEnumeration()`",
+              "verdict": "FP",
+              "reason": "assignment to `_ownedTokens` at body-line 22 between reads"
+            },
+            {
+              "subject": "`_ownedTokensIndex` in `_removeTokenFromOwnerEnumeration()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_allTokens` in `_removeTokenFromAllTokensEnumeration()`",
+              "verdict": "FP",
+              "reason": "assignment to `_allTokens` at body-line 24 between reads"
+            },
+            {
+              "subject": "`_allTokensIndex` in `_removeTokenFromAllTokensEnumeration()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_tokenURIs` in `_burn()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`traits` in `getTraitInfoById()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`traits` in `getTraitNameById()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`traits` in `getTraitArtById()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_name` in `createTrait()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`traits` in `createTrait()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`traits` in `extendTraitArt()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`tokenIdByGenerationWaveAndSerial` in `mintAvastar()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`avastars` in `mintAvastar()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`avastars` in `getAvastarWaveByTokenId()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`avastars` in `renderAvastar()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`primesByGeneration` in `getPrimeByGenerationAndSerial()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`avastars` in `getPrimeByTokenId()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`avastars` in `getPrimeReplicationByTokenId()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`primeCountByGenAndSeries` in `mintPrime()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`primesByGeneration` in `mintPrime()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`replicantsByGeneration` in `getReplicantByGenerationAndSerial()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`avastars` in `getReplicantByTokenId()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`replicantCountByGeneration` in `mintReplicant()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`replicantsByGeneration` in `mintReplicant()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`traitHandlerByPrimeTokenId` in `approveTraitAccess()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`avastars` in `useTraits()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`traitHandlerByPrimeTokenId` in `useTraits()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            }
+          ],
+          "TP": 9,
+          "FP": 2,
+          "?": 26
+        },
+        {
+          "pattern": "string_vs_bytes32",
+          "findings": [
+            {
+              "subject": "`_name`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_symbol`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`TOKEN_NAME`",
+              "verdict": "TP",
+              "reason": "value=\"Avastar\" (7 chars ≤ 32)"
+            },
+            {
+              "subject": "`TOKEN_SYMBOL`",
+              "verdict": "TP",
+              "reason": "value=\"AVASTAR\" (7 chars ≤ 32)"
+            },
+            {
+              "subject": "`_a`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_b`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`errorMessage`",
+              "verdict": "?",
+              "reason": "`errorMessage` not found as top-level state variable — may be inherited or local"
+            },
+            {
+              "subject": "`errorMessage`",
+              "verdict": "?",
+              "reason": "`errorMessage` not found as top-level state variable — may be inherited or local"
+            },
+            {
+              "subject": "`errorMessage`",
+              "verdict": "?",
+              "reason": "`errorMessage` not found as top-level state variable — may be inherited or local"
+            },
+            {
+              "subject": "`name`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`symbol`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`uri`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`name`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`symbol`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_artist`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_infoURI`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_name`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_svg`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_svg`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            }
+          ],
+          "TP": 16,
+          "FP": 0,
+          "?": 3
+        },
+        {
+          "pattern": "public_vs_external",
+          "findings": [
+            {
+              "subject": "`transferFrom()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`approve()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`setApprovalForAll()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`onERC721Received()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [2365]"
+            },
+            {
+              "subject": "`approve()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`setApprovalForAll()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transferFrom()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`tokenOfOwnerByIndex()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`tokenByIndex()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`tokenOfOwnerByIndex()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`tokenByIndex()`",
+              "verdict": "TP",
+              "reason": ""
+            }
+          ],
+          "TP": 10,
+          "FP": 1,
+          "?": 0
+        },
+        {
+          "pattern": "dead_code",
+          "findings": [
+            {
+              "subject": "`uintToStr()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`mul()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`_msgData()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`toPayable()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`sendValue()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`_tokensOfOwner()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`_setTokenURI()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            }
+          ],
+          "TP": 7,
+          "FP": 0,
+          "?": 0
+        }
+      ]
+    },
+    {
+      "rank": 15,
+      "nama": "MANAToken",
+      "domain": "Token",
+      "loc": 222,
+      "estimated_savings": 54175,
+      "patterns": [
+        {
+          "pattern": "redundant_sload",
+          "findings": [
+            {
+              "subject": "`balances` in `transfer()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`allowed` in `transferFrom()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`balances` in `transferFrom()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`allowed` in `approve()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`totalSupply` in `mint()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`balances` in `mint()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`balances` in `burn()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`totalSupply` in `burn()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            }
+          ],
+          "TP": 0,
+          "FP": 0,
+          "?": 8
+        },
+        {
+          "pattern": "string_vs_bytes32",
+          "findings": [
+            {
+              "subject": "`symbol`",
+              "verdict": "TP",
+              "reason": "value=\"MANA\" (4 chars ≤ 32)"
+            },
+            {
+              "subject": "`name`",
+              "verdict": "TP",
+              "reason": "value=\"Decentraland MANA\" (17 chars ≤ 32)"
+            }
+          ],
+          "TP": 2,
+          "FP": 0,
+          "?": 0
+        },
+        {
+          "pattern": "public_vs_external",
+          "findings": [
+            {
+              "subject": "`balanceOf()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transfer()`",
+              "verdict": "FP",
+              "reason": "called via super.transfer() at lines [479]"
+            },
+            {
+              "subject": "`transferOwnership()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`pause()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`unpause()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`allowance()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transferFrom()`",
+              "verdict": "FP",
+              "reason": "called via super.transferFrom() at lines [487]"
+            },
+            {
+              "subject": "`approve()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transfer()`",
+              "verdict": "FP",
+              "reason": "called via super.transfer() at lines [479]"
+            },
+            {
+              "subject": "`balanceOf()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transferFrom()`",
+              "verdict": "FP",
+              "reason": "called via super.transferFrom() at lines [487]"
+            },
+            {
+              "subject": "`approve()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`allowance()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`mint()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`finishMinting()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transfer()`",
+              "verdict": "FP",
+              "reason": "called via super.transfer() at lines [479]"
+            },
+            {
+              "subject": "`transferFrom()`",
+              "verdict": "FP",
+              "reason": "called via super.transferFrom() at lines [487]"
+            },
+            {
+              "subject": "`burn()`",
+              "verdict": "FP",
+              "reason": "called via super.burn() at lines [551]"
+            },
+            {
+              "subject": "`burn()`",
+              "verdict": "FP",
+              "reason": "called via super.burn() at lines [551]"
+            }
+          ],
+          "TP": 11,
+          "FP": 8,
+          "?": 0
+        },
+        {
+          "pattern": "dead_code",
+          "findings": [
+            {
+              "subject": "`mul()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`div()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            }
+          ],
+          "TP": 2,
+          "FP": 0,
+          "?": 0
+        }
+      ]
+    },
+    {
+      "rank": 16,
+      "nama": "LinkToken",
+      "domain": "Token",
+      "loc": 250,
+      "estimated_savings": 53617,
+      "patterns": [
+        {
+          "pattern": "redundant_sload",
+          "findings": [
+            {
+              "subject": "`balances` in `transfer()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`allowed` in `transferFrom()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`balances` in `transferFrom()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`allowed` in `increaseApproval()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`allowed` in `decreaseApproval()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            }
+          ],
+          "TP": 0,
+          "FP": 0,
+          "?": 5
+        },
+        {
+          "pattern": "string_vs_bytes32",
+          "findings": [
+            {
+              "subject": "`name`",
+              "verdict": "TP",
+              "reason": "constant/immutable string, could be bytes32"
+            },
+            {
+              "subject": "`symbol`",
+              "verdict": "TP",
+              "reason": "constant/immutable string, could be bytes32"
+            }
+          ],
+          "TP": 2,
+          "FP": 0,
+          "?": 0
+        },
+        {
+          "pattern": "public_vs_external",
+          "findings": [
+            {
+              "subject": "`balanceOf()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transfer()`",
+              "verdict": "FP",
+              "reason": "called via super.transfer() at lines [381, 513]"
+            },
+            {
+              "subject": "`allowance()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transferFrom()`",
+              "verdict": "FP",
+              "reason": "called via super.transferFrom() at lines [567]"
+            },
+            {
+              "subject": "`approve()`",
+              "verdict": "FP",
+              "reason": "called via super.approve() at lines [539]"
+            },
+            {
+              "subject": "`transferAndCall()`",
+              "verdict": "FP",
+              "reason": "called via super.transferAndCall() at lines [487]"
+            },
+            {
+              "subject": "`onTokenTransfer()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [411]"
+            },
+            {
+              "subject": "`transfer()`",
+              "verdict": "FP",
+              "reason": "called via super.transfer() at lines [381, 513]"
+            },
+            {
+              "subject": "`balanceOf()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transferFrom()`",
+              "verdict": "FP",
+              "reason": "called via super.transferFrom() at lines [567]"
+            },
+            {
+              "subject": "`approve()`",
+              "verdict": "FP",
+              "reason": "called via super.approve() at lines [539]"
+            },
+            {
+              "subject": "`allowance()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`increaseApproval()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`decreaseApproval()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transferAndCall()`",
+              "verdict": "FP",
+              "reason": "called via super.transferAndCall() at lines [487]"
+            },
+            {
+              "subject": "`transferAndCall()`",
+              "verdict": "FP",
+              "reason": "called via super.transferAndCall() at lines [487]"
+            },
+            {
+              "subject": "`transfer()`",
+              "verdict": "FP",
+              "reason": "called via super.transfer() at lines [381, 513]"
+            },
+            {
+              "subject": "`approve()`",
+              "verdict": "FP",
+              "reason": "called via super.approve() at lines [539]"
+            },
+            {
+              "subject": "`transferFrom()`",
+              "verdict": "FP",
+              "reason": "called via super.transferFrom() at lines [567]"
+            }
+          ],
+          "TP": 6,
+          "FP": 13,
+          "?": 0
+        },
+        {
+          "pattern": "dead_code",
+          "findings": [
+            {
+              "subject": "`mul()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`div()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            }
+          ],
+          "TP": 2,
+          "FP": 0,
+          "?": 0
+        }
+      ]
+    },
+    {
+      "rank": 17,
+      "nama": "Token",
+      "domain": "Governance",
+      "loc": 528,
+      "estimated_savings": 53579,
+      "patterns": [
+        {
+          "pattern": "redundant_sload",
+          "findings": [
+            {
+              "subject": "`_balances` in `_transfer()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_totalSupply` in `_mint()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_balances` in `_mint()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_totalSupply` in `_burn()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_balances` in `_burn()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_owner`",
+              "verdict": "FP",
+              "reason": "assignment to `_owner` at body-line 1050 between reads"
+            },
+            {
+              "subject": "`_owner` in `renounceOwnership()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_owner` in `_transferOwnership()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            }
+          ],
+          "TP": 0,
+          "FP": 1,
+          "?": 7
+        },
+        {
+          "pattern": "string_vs_bytes32",
+          "findings": [
+            {
+              "subject": "`_name`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_symbol`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_name`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_symbol`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`name`",
+              "verdict": "?",
+              "reason": "`name` not found as top-level state variable — may be inherited or local"
+            },
+            {
+              "subject": "`symbol`",
+              "verdict": "?",
+              "reason": "`symbol` not found as top-level state variable — may be inherited or local"
+            },
+            {
+              "subject": "`name`",
+              "verdict": "?",
+              "reason": "`name` not found as top-level state variable — may be inherited or local"
+            }
+          ],
+          "TP": 4,
+          "FP": 0,
+          "?": 3
+        },
+        {
+          "pattern": "public_vs_external",
+          "findings": [
+            {
+              "subject": "`totalSupply()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`balanceOf()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transfer()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`allowance()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`approve()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transferFrom()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`increaseAllowance()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`decreaseAllowance()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`name()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`symbol()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`burn()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`burnFrom()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`owner()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`renounceOwnership()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transferOwnership()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`changeName()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`name()`",
+              "verdict": "TP",
+              "reason": ""
+            }
+          ],
+          "TP": 17,
+          "FP": 0,
+          "?": 0
+        },
+        {
+          "pattern": "dead_code",
+          "findings": [
+            {
+              "subject": "`mul()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`div()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`mod()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            }
+          ],
+          "TP": 3,
+          "FP": 0,
+          "?": 0
+        }
+      ]
+    },
+    {
+      "rank": 18,
+      "nama": "YFI",
+      "domain": "Governance",
+      "loc": 191,
+      "estimated_savings": 46911,
+      "patterns": [
+        {
+          "pattern": "redundant_sload",
+          "findings": [
+            {
+              "subject": "`_balances` in `_transfer()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_totalSupply` in `_mint()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_balances` in `_mint()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_balances` in `_burn()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`_totalSupply` in `_burn()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`governance` in `setGovernance()`",
+              "verdict": "?",
+              "reason": "only 1 reads found in function body — may be cross-function or parse issue"
+            }
+          ],
+          "TP": 0,
+          "FP": 0,
+          "?": 6
+        },
+        {
+          "pattern": "string_vs_bytes32",
+          "findings": [
+            {
+              "subject": "`_name`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`_symbol`",
+              "verdict": "TP",
+              "reason": "no literal initializer; string state var likely short (name/symbol/version pattern)"
+            },
+            {
+              "subject": "`name`",
+              "verdict": "?",
+              "reason": "`name` not found as top-level state variable — may be inherited or local"
+            },
+            {
+              "subject": "`symbol`",
+              "verdict": "?",
+              "reason": "`symbol` not found as top-level state variable — may be inherited or local"
+            },
+            {
+              "subject": "`errorMessage`",
+              "verdict": "?",
+              "reason": "`errorMessage` not found as top-level state variable — may be inherited or local"
+            },
+            {
+              "subject": "`errorMessage`",
+              "verdict": "?",
+              "reason": "`errorMessage` not found as top-level state variable — may be inherited or local"
+            }
+          ],
+          "TP": 2,
+          "FP": 0,
+          "?": 4
+        },
+        {
+          "pattern": "public_vs_external",
+          "findings": [
+            {
+              "subject": "`totalSupply()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`balanceOf()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transfer()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`allowance()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [347]"
+            },
+            {
+              "subject": "`approve()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`transferFrom()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`increaseAllowance()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`decreaseAllowance()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`name()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`symbol()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`decimals()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`mint()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`setGovernance()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`addMinter()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`removeMinter()`",
+              "verdict": "TP",
+              "reason": ""
+            }
+          ],
+          "TP": 14,
+          "FP": 1,
+          "?": 0
+        },
+        {
+          "pattern": "dead_code",
+          "findings": [
+            {
+              "subject": "`_burn()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`mul()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`safeTransfer()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`safeTransferFrom()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`safeApprove()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            }
+          ],
+          "TP": 5,
+          "FP": 0,
+          "?": 0
+        }
+      ]
+    },
+    {
+      "rank": 19,
+      "nama": "MultiSigWallet",
+      "domain": "Utility",
+      "loc": 334,
+      "estimated_savings": 33931,
+      "patterns": [
+        {
+          "pattern": "redundant_sload",
+          "findings": [
+            {
+              "subject": "`isOwner` in `MultiSigWallet()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`owners` in `removeOwner()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`owners` in `replaceOwner()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`isOwner` in `replaceOwner()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`owners` in `isConfirmed()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`transactionCount` in `addTransaction()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`owners` in `getConfirmationCount()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`transactions` in `getTransactionCount()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`owners` in `getConfirmations()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`transactionCount` in `getTransactionIds()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            },
+            {
+              "subject": "`transactions` in `getTransactionIds()`",
+              "verdict": "?",
+              "reason": "only 0 reads found in function body — may be cross-function or parse issue"
+            }
+          ],
+          "TP": 0,
+          "FP": 0,
+          "?": 11
+        },
+        {
+          "pattern": "unoptimized_loop",
+          "findings": [
+            {
+              "subject": "`owners.length`",
+              "verdict": "TP",
+              "reason": "state array `.length` in for-loop at line 279"
+            },
+            {
+              "subject": "`owners.length`",
+              "verdict": "TP",
+              "reason": "state array `.length` in for-loop at line 279"
+            },
+            {
+              "subject": "`owners.length`",
+              "verdict": "TP",
+              "reason": "state array `.length` in for-loop at line 279"
+            },
+            {
+              "subject": "`owners.length`",
+              "verdict": "TP",
+              "reason": "state array `.length` in for-loop at line 279"
+            },
+            {
+              "subject": "`owners.length`",
+              "verdict": "TP",
+              "reason": "state array `.length` in for-loop at line 279"
+            }
+          ],
+          "TP": 5,
+          "FP": 0,
+          "?": 0
+        },
+        {
+          "pattern": "public_vs_external",
+          "findings": [
+            {
+              "subject": "`addOwner()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`removeOwner()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`replaceOwner()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`submitTransaction()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`revokeConfirmation()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`getConfirmationCount()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`getTransactionCount()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`getOwners()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`getConfirmations()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`getTransactionIds()`",
+              "verdict": "TP",
+              "reason": ""
+            }
+          ],
+          "TP": 10,
+          "FP": 0,
+          "?": 0
+        }
+      ]
+    },
+    {
+      "rank": 20,
+      "nama": "AppProxyUpgradeable",
+      "domain": "DeFi",
+      "loc": 279,
+      "estimated_savings": 21384,
+      "patterns": [
+        {
+          "pattern": "public_vs_external",
+          "findings": [
+            {
+              "subject": "`hasPermission()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`acl()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`hasPermission()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`setApp()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`getApp()`",
+              "verdict": "FP",
+              "reason": "called internally at lines [709]"
+            },
+            {
+              "subject": "`proxyType()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`isDepositable()`",
+              "verdict": "TP",
+              "reason": ""
+            },
+            {
+              "subject": "`proxyType()`",
+              "verdict": "TP",
+              "reason": ""
+            }
+          ],
+          "TP": 7,
+          "FP": 1,
+          "?": 0
+        },
+        {
+          "pattern": "dead_code",
+          "findings": [
+            {
+              "subject": "`getStorageUint256()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`setStorageUint256()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            },
+            {
+              "subject": "`setDepositable()`",
+              "verdict": "TP",
+              "reason": "no callers found in file"
+            }
+          ],
+          "TP": 3,
+          "FP": 0,
+          "?": 0
+        }
+      ]
+    }
+  ]
+}
