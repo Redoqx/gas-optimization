@@ -6,18 +6,21 @@ Semua hasil tersimpan di `results_50/`. Benchmark gas (pekan3) identik dengan da
 
 ## Tabel 4.4a — Detection Accuracy (20-Contract Sample)
 
-*(Diambil dari subset 20 kontrak yang sama dengan eksperimen 75-kontrak — nilai precision/recall tidak berubah karena ground truth identik)*
+*Sumber: Manual audit pada dataset 75 kontrak (top-20 by estimated savings). Nilai precision berlaku untuk kedua dataset karena pola detektor identik.*
+*Detail: `docs/manual_audit/AUDIT_RESULTS.md`*
 
-| Anti-Pattern | True Positive | False Positive | False Negative | Precision | Recall | F1 |
+| Anti-Pattern | Flagged | TP | FP | ? | Precision (%) | Recall |
 |---|---|---|---|---|---|---|
-| redundant_sload | — | — | — | ~72% | ~91% | ~80% |
-| unoptimized_loop | — | — | — | ~100% | ~100% | ~100% |
-| string_vs_bytes32 | — | — | — | ~88% | ~85% | ~86% |
-| public_vs_external | — | — | — | ~79% | ~83% | ~81% |
-| unchecked_arithmetic | N/A | N/A | N/A | N/A | N/A | N/A |
-| dead_code | — | — | — | ~62% | ~80% | ~70% |
+| Redundant SLOAD | 304 | 49 | 22 | 233 | **69.0**\* | est. ~80% |
+| Unoptimized Loop | 7 | 7 | 0 | 0 | **100.0** | est. ~90% |
+| String vs Bytes32 | 126 | 99 | 0 | 27 | **100.0**† | est. ~85% |
+| Public vs External | 439 | 322 | 114 | 3 | **73.9** | est. ~90% |
+| Unchecked Arithmetic | 0 | 0 | 0 | 0 | N/A | N/A |
+| Dead Code | 69 | 64 | 3 | 2 | **95.5** | est. ~80% |
+| **Total (5 pola aktif)** | **945** | **541** | **139** | **265** | **79.6** | — |
 
-*Catatan: Precision/recall tidak di-rerun untuk 50-contract experiment karena ground truth labeling tidak berubah.*
+*\*69.0% dari 71 resolved cases; 233 ambiguous karena function body parser gagal mengekstrak scope akurat*  
+*†100% dari 99 resolved cases; 27 kasus tidak dapat diverifikasi panjang string*
 
 ---
 

@@ -21,12 +21,12 @@ async function main() {
   const p2 = (Number(d2) * 100 / Number(g3)).toFixed(2);
 
   console.log("=== BENCHMARK ANTI-PATTERN GAS ===");
-  console.log("[Redundant SLOAD — compute]");
+  console.log("[Redundant SLOAD â€” compute]");
   console.log("  computeBoros :", g1.toString(), "gas");
   console.log("  computeHemat :", g2.toString(), "gas");
   console.log("  Selisih      :", d1.toString(), "gas ("+p1+"%)");
   console.log("");
-  console.log("[Unoptimized Loop — sum(10 items)]");
+  console.log("[Unoptimized Loop â€” sum(10 items)]");
   console.log("  sumBoros     :", g3.toString(), "gas");
   console.log("  sumHemat     :", g4.toString(), "gas");
   console.log("  Selisih      :", d2.toString(), "gas ("+p2+"%)");

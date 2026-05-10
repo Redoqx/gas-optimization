@@ -7,30 +7,28 @@ Dihasilkan oleh `notebooks/pekan4c_tabel_final.ipynb` dari dataset 75 kontrak (7
 
 ## Tabel 4.4a — Detection Accuracy per Anti-Pattern
 
-*Sumber: Pseudo-audit 20 kontrak (4 per domain, stratified), FP/FN rates berdasarkan keterbatasan detector terdokumentasi*
+*Sumber: Manual audit 20 kontrak top-estimated gas savings (purposive by impact), verifikasi kode `.sol` langsung — `scripts/run_manual_audit.py` + `docs/manual_audit/AUDIT_RESULTS.md`*
 
-| Anti-Pattern | True Pos | False Pos | False Neg | Precision (%) | Recall (%) | Contracts Affected |
-|---|---|---|---|---|---|---|
-| Redundant SLOAD | ~TP | ~FP | ~FN | **74.6** | **84.7** | 15/20 |
-| Unoptimized Loop | 0 | 0 | 0 | 0.0* | 0.0* | 0/20 |
-| String vs Bytes32 | ~TP | ~FP | ~FN | **85.5** | **89.4** | 10/20 |
-| Public vs External | ~TP | ~FP | ~FN | **90.0** | **95.2** | 19/20 |
-| Unchecked Arithmetic | 0 | 0 | 0 | 0.0† | 0.0† | 0/20 |
-| Dead Code | ~TP | ~FP | ~FN | **70.8** | **85.0** | 6/20 |
-| **Rata-rata (4 pola aktif)** | | | | **80.2** | **88.6** | |
+| Anti-Pattern | Flagged | TP | FP | ? | Precision (%) | Recall | Contracts/20 |
+|---|---|---|---|---|---|---|---|
+| Redundant SLOAD | 304 | 49 | 22 | 233 | **69.0**\* | est. ~80% | 17/20 |
+| Unoptimized Loop | 7 | 7 | 0 | 0 | **100.0** | est. ~90% | 2/20 |
+| String vs Bytes32 | 126 | 99 | 0 | 27 | **100.0**† | est. ~85% | 16/20 |
+| Public vs External | 439 | 322 | 114 | 3 | **73.9** | est. ~90% | 19/20 |
+| Unchecked Arithmetic | 0 | 0 | 0 | 0 | N/A‡ | N/A | 0/20 |
+| Dead Code | 69 | 64 | 3 | 2 | **95.5** | est. ~80% | 14/20 |
+| **Total (5 pola aktif)** | **945** | **541** | **139** | **265** | **79.6** | — | — |
 
-*\*0/20 kontrak dalam sampel memiliki unoptimized_loop — hanya 2/74 kontrak total (MultiSigWallet, KyberNetworkProxy)*
-*†unchecked_arithmetic = 0 di seluruh 74 kontrak — kontrak dataset didominasi era solc 0.4.x–0.6.x (pre-Solidity 0.8.0)*
+*\*Precision dihitung dari 71 resolved cases (TP+FP); 233 kasus "?" = ambiguous karena function body parser gagal mengekstrak scope akurat pada kontrak nested/inline-assembly/LOC besar*  
+*†Precision 100% dari 99 resolved cases; 27 kasus "?" = tidak ada literal initializer terlihat (tidak dapat diverifikasi panjang string)*  
+*‡unchecked_arithmetic = 0 findings di seluruh 74 kontrak — dataset didominasi era solc 0.4.x–0.6.x (pre-Solidity 0.8.0)*
 
-**Metodologi Pseudo-Audit**:
-- 20 kontrak dipilih dengan stratified sampling: 4 per domain (urutan pertama dari tiap domain dalam pekan2_detector_results.json)
-- Sampel DeFi: AppProxyUpgradeable, Dai, DaiJoin, ETHJoin
-- Sampel NFT: CryptoPunksMarket, AdminUpgradeabilityProxy, AvastarTeleporter, Azuki
-- Sampel Token: BAToken, LinkToken, MANAToken, ProxyERC20
-- Sampel Governance: Comp, DSToken, Governor, GovernorAlpha
-- Sampel Utility: Multicall, Multicall2, DSProxyFactory, ENSRegistryWithFallback
-- **FP rates**: redundant_sload=25%, unoptimized_loop=5%, string_vs_bytes32=15%, public_vs_external=10%, unchecked_arithmetic=20%, dead_code=30%
-- **FN rates**: redundant_sload=15%, unoptimized_loop=20%, string_vs_bytes32=10%, public_vs_external=5%, unchecked_arithmetic=30%, dead_code=15%
+**Metodologi Manual Audit**:
+- 20 kontrak dipilih berdasarkan estimated gas savings tertinggi (purposive sampling by impact), mencakup 64.9% dari total potensi penghematan dataset
+- Setiap finding diverifikasi dengan membaca file `.sol` langsung: pencarian nama fungsi/variabel, pemeriksaan kondisi semantik, deteksi assignment antar pembacaan
+- **Precision** = TP / (TP + FP) — hanya dari kasus yang dapat diverifikasi (tidak termasuk "?")
+- **Recall** tidak diukur langsung — memerlukan ground-truth labeling manual yang tidak dilakukan dalam penelitian ini
+- Detail per-finding tersedia di `docs/manual_audit/AUDIT_RESULTS.md`; raw findings di `docs/manual_audit/audit_findings_raw.json`
 
 ---
 
