@@ -1,0 +1,9 @@
+Anti-Pattern,DeFi (10),NFT (10),Token (10),Governance (10),Utility (10),Total
+Redundant SLOAD,148,208,110,67,28,561
+Unoptimized Loop,2,0,0,0,5,7
+String vs Bytes32,22,94,27,52,2,197
+Public vs External,45,150,179,80,64,518
+Unchecked Arithmetic,0,0,0,0,0,0
+Dead Code,23,34,27,16,0,100
+Total Patterns,240,486,343,215,99,1383
+Avg Gas Saved (%),1.81%,2.72%,3.26%,3.03%,4.22%,—

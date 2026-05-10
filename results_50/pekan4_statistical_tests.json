@@ -1,0 +1,22 @@
+{
+  "wilcoxon_gas_savings": {
+    "W": 15.0,
+    "p": 0.03125,
+    "significant_005": true
+  },
+  "chi_square_domain": {
+    "chi2": 4.444444444444445,
+    "p": 0.3491858526038865,
+    "significant_005": false
+  },
+  "kruskal_wallis_complexity": {
+    "H": 5.605984306489944,
+    "p": 0.06062838154337518,
+    "significant_005": false
+  },
+  "spearman_loc_findings": {
+    "rho": 0.3289193838871143,
+    "p": 0.019685268243184208,
+    "significant_005": true
+  }
+}

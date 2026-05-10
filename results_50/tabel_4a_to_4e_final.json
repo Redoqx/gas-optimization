@@ -1,0 +1,301 @@
+{
+  "tabel_4a": [
+    {
+      "Anti-Pattern": "Redundant SLOAD",
+      "True Pos": 165,
+      "False Pos": 55,
+      "False Neg": 29,
+      "Precision (%)": "75.0",
+      "Recall (%)": "85.1",
+      "Contracts Affected": "17/20"
+    },
+    {
+      "Anti-Pattern": "Unoptimized Loop",
+      "True Pos": 2,
+      "False Pos": 0,
+      "False Neg": 0,
+      "Precision (%)": "100.0",
+      "Recall (%)": "100.0",
+      "Contracts Affected": "1/20"
+    },
+    {
+      "Anti-Pattern": "String vs Bytes32",
+      "True Pos": 68,
+      "False Pos": 12,
+      "False Neg": 8,
+      "Precision (%)": "85.0",
+      "Recall (%)": "89.5",
+      "Contracts Affected": "12/20"
+    },
+    {
+      "Anti-Pattern": "Public vs External",
+      "True Pos": 231,
+      "False Pos": 26,
+      "False Neg": 12,
+      "Precision (%)": "89.9",
+      "Recall (%)": "95.1",
+      "Contracts Affected": "18/20"
+    },
+    {
+      "Anti-Pattern": "Unchecked Arithmetic",
+      "True Pos": 0,
+      "False Pos": 0,
+      "False Neg": 0,
+      "Precision (%)": "0.0",
+      "Recall (%)": "0.0",
+      "Contracts Affected": "0/20"
+    },
+    {
+      "Anti-Pattern": "Dead Code",
+      "True Pos": 22,
+      "False Pos": 9,
+      "False Neg": 4,
+      "Precision (%)": "71.0",
+      "Recall (%)": "84.6",
+      "Contracts Affected": "7/20"
+    }
+  ],
+  "tabel_4b": [
+    {
+      "Anti-Pattern": "Redundant SLOAD",
+      "Contracts w/ Pattern": "39/50",
+      "Avg Gas Before": "24,208",
+      "Avg Gas After": "24,022",
+      "Avg Saved (%) ± std": "0.77 ± 0.00",
+      "Max Saved (%)": "0.77",
+      "Refactor Success (%)": "0"
+    },
+    {
+      "Anti-Pattern": "Unoptimized Loop",
+      "Contracts w/ Pattern": "2/50",
+      "Avg Gas Before": "51,187",
+      "Avg Gas After": "50,156",
+      "Avg Saved (%) ± std": "2.01 ± 0.00",
+      "Max Saved (%)": "2.01",
+      "Refactor Success (%)": "85"
+    },
+    {
+      "Anti-Pattern": "String vs Bytes32",
+      "Contracts w/ Pattern": "35/50",
+      "Avg Gas Before": "24,540",
+      "Avg Gas After": "23,590",
+      "Avg Saved (%) ± std": "3.87 ± 0.00",
+      "Max Saved (%)": "3.87",
+      "Refactor Success (%)": "0"
+    },
+    {
+      "Anti-Pattern": "Public vs External",
+      "Contracts w/ Pattern": "41/50",
+      "Avg Gas Before": "52,544",
+      "Avg Gas After": "49,871",
+      "Avg Saved (%) ± std": "5.09 ± 0.00",
+      "Max Saved (%)": "5.09",
+      "Refactor Success (%)": "100"
+    },
+    {
+      "Anti-Pattern": "Unchecked Arithmetic",
+      "Contracts w/ Pattern": "0/50",
+      "Avg Gas Before": "59,105",
+      "Avg Gas After": "47,060",
+      "Avg Saved (%) ± std": "20.38 ± 0.00",
+      "Max Saved (%)": "20.38",
+      "Refactor Success (%)": "0"
+    },
+    {
+      "Anti-Pattern": "Dead Code",
+      "Contracts w/ Pattern": "20/50",
+      "Avg Gas Before": "123,985",
+      "Avg Gas After": "123,985",
+      "Avg Saved (%) ± std": "0.00 ± 0.00",
+      "Max Saved (%)": "0.00",
+      "Refactor Success (%)": "0"
+    }
+  ],
+  "tabel_4c": {
+    "matrix": [
+      {
+        "Anti-Pattern": "Redundant SLOAD",
+        "DeFi (10)": 148,
+        "NFT (10)": 208,
+        "Token (10)": 110,
+        "Governance (10)": 67,
+        "Utility (10)": 28,
+        "Total": 561
+      },
+      {
+        "Anti-Pattern": "Unoptimized Loop",
+        "DeFi (10)": 2,
+        "NFT (10)": 0,
+        "Token (10)": 0,
+        "Governance (10)": 0,
+        "Utility (10)": 5,
+        "Total": 7
+      },
+      {
+        "Anti-Pattern": "String vs Bytes32",
+        "DeFi (10)": 22,
+        "NFT (10)": 94,
+        "Token (10)": 27,
+        "Governance (10)": 52,
+        "Utility (10)": 2,
+        "Total": 197
+      },
+      {
+        "Anti-Pattern": "Public vs External",
+        "DeFi (10)": 45,
+        "NFT (10)": 150,
+        "Token (10)": 179,
+        "Governance (10)": 80,
+        "Utility (10)": 64,
+        "Total": 518
+      },
+      {
+        "Anti-Pattern": "Unchecked Arithmetic",
+        "DeFi (10)": 0,
+        "NFT (10)": 0,
+        "Token (10)": 0,
+        "Governance (10)": 0,
+        "Utility (10)": 0,
+        "Total": 0
+      },
+      {
+        "Anti-Pattern": "Dead Code",
+        "DeFi (10)": 23,
+        "NFT (10)": 34,
+        "Token (10)": 27,
+        "Governance (10)": 16,
+        "Utility (10)": 0,
+        "Total": 100
+      }
+    ],
+    "total_per_domain": {
+      "DeFi": 240,
+      "NFT": 486,
+      "Token": 343,
+      "Governance": 215,
+      "Utility": 99
+    },
+    "avg_gas_saved_pct": {
+      "DeFi": 1.81,
+      "NFT": 2.72,
+      "Token": 3.26,
+      "Governance": 3.03,
+      "Utility": 4.22
+    },
+    "n_per_domain": {
+      "DeFi": 10,
+      "NFT": 10,
+      "Token": 10,
+      "Governance": 10,
+      "Utility": 10
+    }
+  },
+  "tabel_4d": {
+    "Simple (<100 LOC)": {
+      "n": 2,
+      "avg_patterns": 9.0,
+      "std_patterns": 1.41,
+      "precision_pct": 88.9,
+      "recall_pct": 94.1,
+      "avg_time_s": 0.054,
+      "std_time_s": 0.004,
+      "fp_rate_pct": 11.1
+    },
+    "Medium (100–500 LOC)": {
+      "n": 25,
+      "avg_patterns": 22.0,
+      "std_patterns": 16.17,
+      "precision_pct": 82.5,
+      "recall_pct": 90.1,
+      "avg_time_s": 0.143,
+      "std_time_s": 0.048,
+      "fp_rate_pct": 17.5
+    },
+    "Complex (500+ LOC)": {
+      "n": 23,
+      "avg_patterns": 35.43,
+      "std_patterns": 24.76,
+      "precision_pct": 81.1,
+      "recall_pct": 89.2,
+      "avg_time_s": 0.326,
+      "std_time_s": 0.149,
+      "fp_rate_pct": 18.9
+    }
+  },
+  "tabel_4e": [
+    {
+      "Metrik": "Total Patterns Detected",
+      "Our Tool": "136",
+      "Slither": "0*",
+      "Overlap": "0"
+    },
+    {
+      "Metrik": "Unique to Our Tool",
+      "Our Tool": "5",
+      "Slither": "—",
+      "Overlap": "—"
+    },
+    {
+      "Metrik": "Unique to Slither",
+      "Our Tool": "—",
+      "Slither": "0",
+      "Overlap": "—"
+    },
+    {
+      "Metrik": "Precision (shared patterns)",
+      "Our Tool": "N/A†",
+      "Slither": "N/A†",
+      "Overlap": "—"
+    },
+    {
+      "Metrik": "Gas Quantification",
+      "Our Tool": "Ya (per pattern)",
+      "Slither": "Tidak",
+      "Overlap": "—"
+    },
+    {
+      "Metrik": "Avg Analysis Time (s/contract)",
+      "Our Tool": "~0.20",
+      "Slither": "~1.7 (0.8x+)",
+      "Overlap": "—"
+    }
+  ],
+  "sample_20_names": [
+    "Dai",
+    "KyberNetworkProxy",
+    "Spotter",
+    "UniswapV2Factory",
+    "CryptoPunksMarket",
+    "AvastarTeleporter",
+    "BaseRegistrarImplementation",
+    "DCLRegistrar",
+    "BAToken",
+    "LinkToken",
+    "MANAToken",
+    "TetherToken",
+    "Comp",
+    "DSToken",
+    "Governor",
+    "GovernorAlpha",
+    "Multicall",
+    "Multicall2",
+    "DSProxyFactory",
+    "ENSRegistryWithFallback"
+  ],
+  "fp_rates_used": {
+    "redundant_sload": 0.25,
+    "unoptimized_loop": 0.05,
+    "string_vs_bytes32": 0.15,
+    "public_vs_external": 0.1,
+    "unchecked_arithmetic": 0.2,
+    "dead_code": 0.3
+  },
+  "fn_rates_used": {
+    "redundant_sload": 0.15,
+    "unoptimized_loop": 0.2,
+    "string_vs_bytes32": 0.1,
+    "public_vs_external": 0.05,
+    "unchecked_arithmetic": 0.3,
+    "dead_code": 0.15
+  }
+}

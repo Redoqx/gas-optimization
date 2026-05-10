@@ -1,0 +1,7 @@
+Anti-Pattern,True Pos,False Pos,False Neg,Precision (%),Recall (%),Contracts Affected
+Redundant SLOAD,165,55,29,75.0,85.1,17/20
+Unoptimized Loop,2,0,0,100.0,100.0,1/20
+String vs Bytes32,68,12,8,85.0,89.5,12/20
+Public vs External,231,26,12,89.9,95.1,18/20
+Unchecked Arithmetic,0,0,0,0.0,0.0,0/20
+Dead Code,22,9,4,71.0,84.6,7/20

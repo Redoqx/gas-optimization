@@ -1,0 +1,50 @@
+[
+  {
+    "pattern": "redundant_sload",
+    "label": "Redundant SLOAD (3x read vs 1x cache)",
+    "boros_gas": 24208,
+    "hemat_gas": 24022,
+    "diff_gas": 186,
+    "pct_save": 0.77
+  },
+  {
+    "pattern": "unoptimized_loop",
+    "label": "Unoptimized Loop (.length per iter vs cached, n=10)",
+    "boros_gas": 51187,
+    "hemat_gas": 50156,
+    "diff_gas": 1031,
+    "pct_save": 2.01
+  },
+  {
+    "pattern": "string_vs_bytes32",
+    "label": "String vs Bytes32 (read)",
+    "boros_gas": 24540,
+    "hemat_gas": 23590,
+    "diff_gas": 950,
+    "pct_save": 3.87
+  },
+  {
+    "pattern": "public_vs_external",
+    "label": "Public vs External (calldata array n=10)",
+    "boros_gas": 52544,
+    "hemat_gas": 49871,
+    "diff_gas": 2673,
+    "pct_save": 5.09
+  },
+  {
+    "pattern": "unchecked_arithmetic",
+    "label": "Unchecked Arithmetic (loop n=100)",
+    "boros_gas": 59105,
+    "hemat_gas": 47060,
+    "diff_gas": 12045,
+    "pct_save": 20.38
+  },
+  {
+    "pattern": "dead_code",
+    "label": "Dead Code (deployment cost, 3 dead funcs)",
+    "boros_gas": 123985,
+    "hemat_gas": 123985,
+    "diff_gas": 0,
+    "pct_save": 0.0
+  }
+]

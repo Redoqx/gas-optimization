@@ -1,0 +1,7 @@
+Metrik,Our Tool,Slither,Overlap
+Total Patterns Detected,136,0*,0
+Unique to Our Tool,5,—,—
+Unique to Slither,—,0,—
+Precision (shared patterns),N/A†,N/A†,—
+Gas Quantification,Ya (per pattern),Tidak,—
+Avg Analysis Time (s/contract),~0.20,~1.7 (0.8x+),—

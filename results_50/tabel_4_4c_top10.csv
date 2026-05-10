@@ -1,0 +1,11 @@
+nama,domain,loc,total,redundant_sload,unoptimized_loop,string_vs_bytes32,public_vs_external,unchecked_arithmetic,dead_code
+DCLRegistrar,NFT,1570,90,26,0,23,34,0,7
+AvastarTeleporter,NFT,2171,74,37,0,19,11,0,7
+KyberNetworkProxy,DeFi,484,68,24,2,0,40,0,2
+AdminUpgradeabilityProxy,Token,581,61,33,0,3,25,0,0
+Parcel,NFT,733,57,21,0,7,26,0,3
+WrappedPunk,NFT,1376,54,14,0,10,22,0,8
+WBTC,Token,564,52,13,0,4,31,0,4
+SuperRareV2,NFT,999,51,16,0,12,20,0,3
+CErc20,DeFi,2178,49,33,0,6,1,0,9
+CEther,DeFi,2138,49,32,0,7,1,0,9

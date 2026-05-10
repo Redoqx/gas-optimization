@@ -1,0 +1,42 @@
+{
+  "AppProxyUpgradeable": {
+    "all_detectors": [],
+    "gas_detectors": []
+  },
+  "Dai": {
+    "all_detectors": [],
+    "gas_detectors": []
+  },
+  "DaiJoin": {
+    "all_detectors": [],
+    "gas_detectors": []
+  },
+  "ETHJoin": {
+    "all_detectors": [],
+    "gas_detectors": []
+  },
+  "GemJoin": {
+    "all_detectors": [],
+    "gas_detectors": []
+  },
+  "KyberNetworkProxy": {
+    "all_detectors": [],
+    "gas_detectors": []
+  },
+  "Spotter": {
+    "all_detectors": [],
+    "gas_detectors": []
+  },
+  "UniswapV2Factory": {
+    "all_detectors": [],
+    "gas_detectors": []
+  },
+  "UniswapV2Pair": {
+    "all_detectors": [],
+    "gas_detectors": []
+  },
+  "Vat": {
+    "all_detectors": [],
+    "gas_detectors": []
+  }
+}

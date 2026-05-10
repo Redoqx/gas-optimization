@@ -1,0 +1,6 @@
+domain,n,total,redundant_sload,unoptimized_loop,string_vs_bytes32,public_vs_external,unchecked_arithmetic,dead_code
+DeFi,10,240,148,2,22,45,0,23
+NFT,10,486,208,0,94,150,0,34
+Token,10,343,110,0,27,179,0,27
+Governance,10,215,67,0,52,80,0,16
+Utility,10,99,28,5,2,64,0,0

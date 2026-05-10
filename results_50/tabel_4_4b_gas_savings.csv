@@ -1,0 +1,7 @@
+Anti-Pattern,Contracts w/ Pattern,Avg Gas Before,Avg Gas After,Avg Saved (%) ± std,Max Saved (%),Refactor Success (%)
+Redundant SLOAD,39/50,"24,208","24,022",0.77 ± 0.00,0.77,0
+Unoptimized Loop,2/50,"51,187","50,156",2.01 ± 0.00,2.01,85
+String vs Bytes32,35/50,"24,540","23,590",3.87 ± 0.00,3.87,0
+Public vs External,41/50,"52,544","49,871",5.09 ± 0.00,5.09,100
+Unchecked Arithmetic,0/50,"59,105","47,060",20.38 ± 0.00,20.38,0
+Dead Code,20/50,"123,985","123,985",0.00 ± 0.00,0.00,0

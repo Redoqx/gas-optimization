@@ -1,0 +1,7 @@
+pattern,label,boros_gas,hemat_gas,diff_gas,pct_save
+redundant_sload,Redundant SLOAD (3x read vs 1x cache),24208,24022,186,0.77
+unoptimized_loop,"Unoptimized Loop (.length per iter vs cached, n=10)",51187,50156,1031,2.01
+string_vs_bytes32,String vs Bytes32 (read),24540,23590,950,3.87
+public_vs_external,Public vs External (calldata array n=10),52544,49871,2673,5.09
+unchecked_arithmetic,Unchecked Arithmetic (loop n=100),59105,47060,12045,20.38
+dead_code,"Dead Code (deployment cost, 3 dead funcs)",123985,123985,0,0.0

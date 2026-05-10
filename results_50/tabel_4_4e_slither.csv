@@ -1,0 +1,11 @@
+nama,kita,slither,both,only_ours,only_slither,neither
+AppProxyUpgradeable,0,0,0,0,0,1
+Dai,10,0,0,1,0,0
+DaiJoin,0,0,0,0,0,1
+ETHJoin,0,0,0,0,0,1
+GemJoin,0,0,0,0,0,1
+KyberNetworkProxy,68,0,0,1,0,0
+Spotter,0,0,0,0,0,1
+UniswapV2Factory,20,0,0,1,0,0
+UniswapV2Pair,14,0,0,1,0,0
+Vat,24,0,0,1,0,0
